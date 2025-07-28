@@ -16,6 +16,7 @@ const Login = () => {
     const [isLogin,setIsLogin]=useState<boolean>(true);
   return (
     <>
+    
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <Card className="w-full max-w-sm">
       <CardHeader>
