@@ -8,12 +8,18 @@ class AuthService{
         if(!username || !email || !password){
             throw new Error("Username and email and password must be required");
         }
-        const existUser=User.findOne({email});
+        const existUser = await User.findOne({email});
         if(existUser){
             throw new Error("User already exist");
         }
-        const hashPassword=bcrypt.hash(password,10);
-        const tokens=tokenService
+        const hashPassword = await bcrypt.hash(password,10);
+        const user = await User.create({username,email,password:hashPassword});
+        const userDTO=new DTO(user);
+        const tokens=tokenService.generateTokens({...userDTO});
+        await tokenService.saveToken(userDTO.id,tokens.refreshToken);
+        return {userDTO,...tokens};
     }
     
 }
+
+module.exports=new AuthService();

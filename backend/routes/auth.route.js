@@ -1,7 +1,13 @@
 const { Router } = require('express');
 const {body} =require ('express-validator');
+const authController=require("../controller/auth.controller");
 const router=Router();
 
 
+router.post("/register",
+    body("username").isLength({min:3,max:50}),
+    body("email").isEmail(),
+    body("password").isLength({min:8,max:1024}),
+    authController.signUp);
 
 module.exports=router;

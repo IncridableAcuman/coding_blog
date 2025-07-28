@@ -10,7 +10,7 @@ module.exports = class UserDTO{
         this.id=model.id;
         this.username=model.username;
         this.email=model.email;
-        this.role=this.role;
+        this.role=model.role;
         this.accessToken=model.accessToken;
         this.refreshToken=model.refreshToken
     }

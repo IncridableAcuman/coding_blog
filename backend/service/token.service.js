@@ -3,10 +3,9 @@ const Token=require("../model/token.model");
 
 class TokenService{
 
-     generateAccessTokens(payload){
-        const accessToken=jwt.sign(payload,process.env.JWT_REFRESH,{expiresIn:'15m'});
-        const 
-        refreshToken=jwt.sign(payload,process.env.JWT_ACCESS,{expiresIn:'7d'});
+     generateTokens(payload){
+        const accessToken=jwt.sign(payload,process.env.JWT_ACCESS,{expiresIn:'15m'});
+        const refreshToken=jwt.sign(payload,process.env.JWT_REFRESH,{expiresIn:'7d'});
         return {accessToken,refreshToken};
     }
 
@@ -44,4 +43,4 @@ class TokenService{
     }
 
 }
-module.exports=TokenService;
+module.exports = new TokenService();

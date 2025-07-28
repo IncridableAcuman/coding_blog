@@ -9,7 +9,7 @@ const app=express();
  
 app.use(express.json());
 app.use(cors({credentials:true,origin:process.env.CLIENT}));
-app.use(cookieParser({}));
+app.use(cookieParser());
 app.use("/api/auth",authRoutes);
 db();
 const port=process.env.PORT;
