@@ -1,4 +1,5 @@
 const tokenService=require('./token.service');
+const mailService=require("./mail.service");
 const bcrypt=require('bcryptjs');
 const User=require("../model/user.model");
 const DTO=require("../data/userDTO");
@@ -67,7 +68,20 @@ class AuthService{
         }
         await tokenService.removeToken(refreshToken);
     }
-
+    // forgot password
+    async forgotPassword(email){
+        if(!email){
+            throw BaseError.Badrequest("Email is empty");
+        }
+        const user=await User.findOne({email});
+        if(!user){
+            throw BaseError.NotFoundError("User not found");
+        }
+        const userDTO=new DTO(user);
+        const tokens=tokenService.generateTokens({...userDTO});
+        mailService.sendMail(userDTO.email,process.env.CLIENT+"/reset-password?token="+tokens.accessToken);
+        return {message:"Reset password link sent to email"};
+    }
 }
 
 module.exports=new AuthService();
