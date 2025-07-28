@@ -82,6 +82,25 @@ class AuthService{
         mailService.sendMail(userDTO.email,process.env.CLIENT+"/reset-password?token="+tokens.accessToken);
         return {message:"Reset password link sent to email"};
     }
+    // reset password
+    async resetPassword(token,password){
+        if(!token || !password){
+            throw BaseError.Badrequest("Body must be required");
+        }
+        const userPayload=tokenService.validateAccessToken(token);
+        if(!userPayload){
+            throw BaseError.UnauthorizedError();
+        }
+        const user=await User.findById(userPayload.id);
+        if(!user){
+            throw new BaseError.NotFoundError("User not found");
+        }
+        const hashPassword=await bcrypt.hash(password,10);
+        user.password=hashPassword;
+        user.save();
+        await tokenService.removeToken(token);
+        return {message:"Password updated successfully"};
+    }
 }
 
 module.exports=new AuthService();
