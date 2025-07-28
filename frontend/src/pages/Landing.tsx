@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import BlogCards from "@/components/ui/data/BlogCards"
 import Navbar from "@/components/ui/data/Navbar"
 
 const Landing = () => {
@@ -17,6 +18,7 @@ const Landing = () => {
             </div>
         </div>
       </div>
+      <BlogCards />
     </div>
     </>
   )
