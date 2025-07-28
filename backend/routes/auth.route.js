@@ -10,4 +10,11 @@ router.post("/register",
     body("password").isLength({min:8,max:1024}),
     authController.signUp);
 
+router.post("/login",
+    body("email").isEmail(),
+    body("password").isLength({min:8,max:1024}),
+    authController.login);
+router.get("/refresh",authController.refresh);
+router.post("/logout",authController.logout);
+
 module.exports=router;
