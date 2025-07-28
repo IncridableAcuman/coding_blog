@@ -9,7 +9,7 @@ class AuthController{
             res.cookie("refreshToken",user.refreshToken,{httpOnly:true,maxAge:process.env.REFRESH_TIME});
             return res.json(user);
         } catch (error) {
-            throw new Error(error);
+            next(error);
         }
     }
 
@@ -21,7 +21,7 @@ class AuthController{
             res.cookie("refreshToken",user.refreshToken,{httpOnly:true,maxAge:process.env.REFRESH_TIME});
             return res.json(user);
         } catch (error) {
-            throw new Error(error);
+            next(error);
         }
     }
     // refresh token
@@ -32,7 +32,7 @@ class AuthController{
             res.cookie("refreshToken",user.refreshToken,{httpOnly:true,maxAge:process.env.REFRESH_TIME});
             return res.json(user);
         } catch (error) {
-            throw new Error(error);
+            next(error);
         }
     }
     // logout
@@ -43,7 +43,7 @@ class AuthController{
             res.clearCookie("refreshToken");
             return res.json({message:"Logout successful"});
         } catch (error) {
-            throw new Error(error);
+            next(error);
         }
     }
 
