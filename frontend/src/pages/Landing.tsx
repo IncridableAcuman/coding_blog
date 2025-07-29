@@ -21,6 +21,16 @@ const Landing = () => {
       </div>
       <BlogCards />
     </div>
+    {/* nerver miss a blog */}
+    <div className="flex flex-col items-center justify-center p-4">
+      <h1 className="text-3xl font-semibold lg:text-4xl pt-10">Never Miss a Blog!</h1>
+      <p className="pt-3 text-lg text-gray-400">Subscribe to get the latest blog, new tech, and exclusive news.</p>
+      <div className="py-10 w-full  max-w-xl mx-auto">
+        <input type="email" placeholder="Enter your email id"
+         className="w-[70%] border border-sky-500 p-2 rounded focus:outline-none focus:ring-2 focus:ring-sky-500" />
+        <button className="bg-gray-900 text-white px-5 py-2 rounded cursor-pointer hover:bg-gray-700 transition duration-300">Subscribe</button>
+      </div>
+    </div>
     <Footer/>
     </>
   )
