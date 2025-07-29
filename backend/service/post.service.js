@@ -18,6 +18,70 @@ class PostService{
         const populatePost=await post.populate("author");
         return new PostDTO(populatePost);
     }
+    // get all posts
+    async getAllPosts(){
+        const posts=await Post.find().populate("author");
+        return posts.map(post => new PostDTO(post));
+    }
+    // get post by id
+    async getPostById(id){
+        const post=await Post.findById(id).populate("author");
+        if(!post){
+            throw BaseError.NotFoundError("Post not found");
+        }
+        return new PostDTO(post);
+    }
+    // update post
+    async updatePost(id,title,description,image,category,tags){
+        if(!title || !description || !image || !category || !tags){
+            throw BaseError.Badrequest();
+        }
+        const post=await Post.findByIdAndUpdate(id, {title, description, image, category, tags}, {new: true}).populate("author");
+        if(!post){
+            throw BaseError.NotFoundError("Post not found");
+        }
+        return new PostDTO(post);
+    }
+    // delete post
+    async deletePost(id){
+        const post=await Post.findByIdAndDelete(id);
+        if(!post){
+            throw BaseError.NotFoundError("Post not found");
+        }
+        return {message: "Post deleted successfully"};
+    }
+    // get posts by category
+    async getPostsByCategory(category){
+        const posts=await Post.find({category}).populate("author");
+        if(posts.length === 0){
+            throw BaseError.NotFoundError("No posts found in this category");
+        }
+        return posts.map(post => new PostDTO(post));
+    }
+    // get posts by tag
+    async getPostsByTag(tag){
+        const posts=await Post.find({tags: tag}).populate("author");
+        if(posts.length === 0){
+            throw BaseError.NotFoundError("No posts found with this tag");
+        }
+        return posts.map(post => new PostDTO(post));
+    }
+    // get posts by author
+    async getPostsByAuthor(authorId){
+        const posts=await Post.find({author: authorId}).populate("author");
+        if(posts.length === 0){
+            throw BaseError.NotFoundError("No posts found for this author");
+        }
+        return posts.map(post => new PostDTO(post));
+    }
+    // search posts
+    async searchPosts(query){
+        const posts=await Post.find({$text: {$search: query}}).populate("author");
+        if(posts.length === 0){
+            throw BaseError.NotFoundError("No posts found for this search query");
+        }
+        return posts.map(post => new PostDTO(post));
+    }
 
 }
 module.exports=new PostService();
