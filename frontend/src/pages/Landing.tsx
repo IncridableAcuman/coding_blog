@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import BlogCards from "@/components/ui/data/BlogCards"
+import Footer from "@/components/ui/data/Footer"
 import Navbar from "@/components/ui/data/Navbar"
 
 const Landing = () => {
@@ -20,6 +21,7 @@ const Landing = () => {
       </div>
       <BlogCards />
     </div>
+    <Footer/>
     </>
   )
 }

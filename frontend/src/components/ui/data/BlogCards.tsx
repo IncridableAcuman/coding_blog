@@ -23,7 +23,7 @@ const BlogCards = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 bg-gray-50">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
       {data.map((item, index) => (
         <Card
           key={index}
@@ -33,7 +33,7 @@ const BlogCards = () => {
             <img
               src={item.image}
               alt={item.title}
-              className="w-full h-full object-cover rounded-t-2xl"
+              className="w-full h-48 object-cover rounded-t-2xl"
             />
           </CardHeader>
           <div className="p-4 space-y-2">

@@ -20,22 +20,22 @@ const Login = () => {
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle>{!isLogin ? "Login to your account" : "Create an account"}</CardTitle>
+        <CardTitle>{isLogin ? "Login to your account" : "Create an account"}</CardTitle>
         <CardDescription>
-          {!isLogin
+          {isLogin
             ? "Enter your credentials to access your account."
             : "Fill in the details below to create a new account."}
         </CardDescription>
         <CardAction>
           <Button variant="link" onClick={() => setIsLogin(!isLogin)}>
-            {!isLogin ? "Sign Up" : "Login"}
+            {isLogin ? "Sign Up" : "Login"}
           </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
         <form>
           <div className="flex flex-col gap-6">
-            {isLogin && (
+            {!isLogin && (
                 <div className="grid gap-2">
               <Label htmlFor="username">Username</Label>
               <Input
@@ -67,10 +67,10 @@ const Login = () => {
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button type="submit" className="w-full">
-          {!isLogin ? "Login" : "Sign Up"}
+          {isLogin ? "Login" : "Sign Up"}
         </Button>
         <Button variant="outline" className="w-full">
-          {!isLogin ? "Login with Google" : "Sign Up with Google"}
+          {isLogin ? "Login with Google" : "Sign Up with Google"}
         </Button>
       </CardFooter>
     </Card>
