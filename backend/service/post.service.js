@@ -1,6 +1,7 @@
 const BaseError=require("../error/base.error");
 const Post=require("../model/post.model");
 const PostDTO=require("../data/postDTO");
+const User=require("../model/user.model");
 
 class PostService{
 
@@ -8,6 +9,10 @@ class PostService{
     async createPost(title,description,author,image,category,tags){
         if(!title || !description || !author || !image || !category || !tags){
             throw BaseError.Badrequest();
+        }
+        const user=await User.findById(author);
+        if(!user){
+            throw BaseError.NotFoundError("User not found");
         }
         const post=await Post.create({title,description,author,image,category,tags});
         const populatePost=await post.populate("author");

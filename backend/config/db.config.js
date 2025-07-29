@@ -2,7 +2,7 @@ const mongoose=require("mongoose");
 
 function db(){
     try {
-        mongoose.connect("mongodb://localhost:27017/blogs").then(()=>{
+        mongoose.connect(process.env.MONGO_URL).then(()=>{
             console.log("Connected successfully");
         }).catch((er)=>{
             console.log("Connection failed",er);

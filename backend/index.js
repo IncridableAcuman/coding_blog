@@ -4,7 +4,7 @@ const cors=require('cors');
 const cookieParser=require("cookie-parser");
 const db=require("./config/db.config");
 const authRoutes=require("./routes/auth.route");
-const postRoutes=require("./routes/blog.route");
+const postRoutes=require("./routes/post.route");
 
 const errorMiddleware=require("./middleware/error.middleware");
 
