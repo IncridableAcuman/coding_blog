@@ -10,8 +10,8 @@ class PostService{
             throw BaseError.Badrequest();
         }
         const post=await Post.create({title,description,author,image,category,tags});
-        const postDTO=new PostDTO(post);
-        return postDTO;
+        const populatePost=await post.populate("author");
+        return new PostDTO(populatePost);
     }
 
 }

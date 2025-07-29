@@ -7,6 +7,7 @@ const postSchema=new Schema({
         required:true,
         minlength:5,
         maxlength:150,
+        trim:true
     },
     description:{
         type:String,
@@ -24,7 +25,8 @@ const postSchema=new Schema({
     },
     category:{
         type:String,
-        required:true
+        required:true,
+        enum: ["tech", "life", "dev", "design"]
     },
     tags:[
         {

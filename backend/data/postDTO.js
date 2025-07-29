@@ -1,17 +1,9 @@
 module.exports=class PostDTO{
-    id;
-    title;
-    description;
-    author;
-    image;
-    category;
-    tags;
-    createdAt;
     constructor(model){
-        this.id=model.id;
+        this.id=model._id;
         this.title=model.title;
         this.description=model.description;
-        this.author=model.author;
+        this.author=model?.author?.username || model?.author;
         this.image=model.image;
         this.category=model.category;
         this.tags=model.tags;
