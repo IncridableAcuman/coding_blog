@@ -1,9 +1,10 @@
 import { Menu, MenuItem, Sidebar } from 'react-pro-sidebar';
 import { Home, List, MessageCircle, PlusSquareIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 const BlogBar = () => {
     const [isMobile,setIsMobile]=useState<boolean>(false);
+    const location=useLocation();
 
     useEffect(()=>{
         const handleResize=()=>{
@@ -29,13 +30,17 @@ const BlogBar = () => {
     >
         <Menu className='pt-24'>
             {
-                menuItem.map((item,index)=>(
-                    <MenuItem 
-                    key={index}
-                     icon={item.icon}
-                     component={<Link to={item.path} />}
-                     >{item.label}</MenuItem>
-                ))
+                    menuItem.map((item,index)=>{
+                    const isActive=location.pathname===item.path
+                    return (
+                        <MenuItem 
+                        key={index}
+                        icon={item.icon}
+                        className={`${isActive ? "bg-gray-100 border-r-2 border-r-blue-500":""}`}
+                        component={<Link to={item.path} />}
+                        >{item.label}</MenuItem>
+                    );
+            })
             }
         </Menu>
     </Sidebar>
