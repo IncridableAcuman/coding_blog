@@ -1,62 +1,68 @@
-import { List, ListChecksIcon, MessageCircle, NotepadText } from "lucide-react"
+import { List, ListChecksIcon, MessageCircle, NotepadText, X } from "lucide-react";
 
 const Blogboard = () => {
-  const boardData=[
-    {title:"Blogs",icon:<List className="w-8 h-8 text-blue-500" />,quantity:10},
-    {title:"Comments",icon:<MessageCircle className="w-8 h-8 text-blue-500" />,quantity:5},
-    {title:"Drafts",icon:<NotepadText className="w-8 h-8 text-blue-500" />,quantity:0}
-  ]
+  const boardData = [
+    { title: "Blogs", icon: <List className="w-8 h-8 text-blue-500" />, quantity: 10 },
+    { title: "Comments", icon: <MessageCircle className="w-8 h-8 text-blue-500" />, quantity: 5 },
+    { title: "Drafts", icon: <NotepadText className="w-8 h-8 text-blue-500" />, quantity: 0 }
+  ];
+
   return (
-    <>
-      <div className="w-full h-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-          {
-            boardData.map((item,index)=>(
-              <div className="flex items-center gap-6 bg-white p-4 shadow rounded-xl hover:shadow-md transition duration-300" key={index}>
-                <p className="bg-gray-100 p-3 rounded-lg">{item.icon}</p>
-                <div className="">
-                  <h2 className="text-xl font-semibold">{item.quantity}</h2>
-                  <h2 className="text-sm text-gray-600">{item.title}</h2>
-                </div>
-              </div>
-            ))
-          }
+    <div className="w-full h-full px-4">
+      {/* Statistic Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {boardData.map((item, index) => (
+          <div key={index} className="flex items-center gap-6 bg-white p-4 shadow-md rounded-xl hover:shadow-lg transition duration-300">
+            <div className="bg-gray-100 p-3 rounded-lg">
+              {item.icon}
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold">{item.quantity}</h2>
+              <p className="text-sm text-gray-600">{item.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Latest Blogs */}
+      <div className="pt-8">
+        <div className="flex items-center gap-2 pb-4">
+          <ListChecksIcon className="w-6 h-6 text-blue-500" />
+          <h3 className="font-semibold text-lg">Latest Blogs</h3>
         </div>
-        {/* Latest blogs */}
-        <div className="pt-5">
-          <div className="flex items-center gap-2 p-4">
-            <ListChecksIcon className="w-8 h-8 text-blue-500" />
-            <p>Latest Blogs</p>
-          </div>
-          {/* table */}
-          <div className="pt-3">
-            <table className="border-b">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Blog title</th>
-                  <th>date</th>
-                  <th>status</th>
-                  <th>actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>The Rise of Artificial Intelligence in Modern Technology</td>
-                  <td>Wed May 28 2025</td>
-                  <td>Published</td>
-                  <td>
-                    <button>Unpublished</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+
+        {/* Responsive Table */}
+        <div className="overflow-x-auto bg-white rounded-md shadow">
+          <table className="w-full divide-y divide-gray-200 text-sm">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="px-6 py-3 text-left font-bold uppercase">#</th>
+                <th className="px-6 py-3 text-left font-bold uppercase">Blog Title</th>
+                <th className="px-6 py-3 text-left font-bold uppercase">Date</th>
+                <th className="px-6 py-3 text-left font-bold uppercase">Category</th>
+                <th className="px-6 py-3 text-left font-bold uppercase">Tags</th>
+                <th className="px-6 py-3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="hover:bg-gray-50">
+                <td className="px-6 py-4 whitespace-nowrap">1</td>
+                <td className="px-6 py-4 whitespace-nowrap">The Rise of Artificial Intelligence in Modern Technology</td>
+                <td className="px-6 py-4 whitespace-nowrap">Wed May 28 2025</td>
+                <td className="px-6 py-4 whitespace-nowrap">Technology</td>
+                <td className="px-6 py-4 whitespace-nowrap">tech, dev</td>
+                <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <button className="text-red-500 hover:text-red-700">
+                    <X size={16} />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default Blogboard
+export default Blogboard;
