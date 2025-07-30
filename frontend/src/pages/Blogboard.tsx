@@ -8,7 +8,7 @@ const Blogboard = () => {
         <BlogBar/>
         <div className="flex flex-col flex-1">
           <BoardNavbar/>
-          <main className="p-10 overflow-y-auto flex-1 lg:ml-64 ">
+          <main className="p-24 overflow-y-auto flex-1 lg:ml-64">
             <Outlet/>
           </main>
         </div>
