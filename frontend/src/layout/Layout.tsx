@@ -8,7 +8,7 @@ const Layout = () => {
       <BlogBar/>
       <div className="flex flex-col flex-1">
         <BoardNavbar/>
-        <main className="pt-24 px-10 overflow-y-auto flex-1 lg:ml-52">
+        <main className="pt-24 px-5 overflow-y-auto flex-1 lg:ml-30">
           <Outlet/>
         </main>
       </div>
