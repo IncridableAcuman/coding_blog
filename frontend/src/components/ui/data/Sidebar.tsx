@@ -1,7 +1,9 @@
 
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <div className={`min-h-screen w-64 bg-gray-900 text-white`}>
+
+    </div>
   )
 }
 

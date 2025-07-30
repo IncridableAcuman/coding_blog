@@ -1,7 +1,10 @@
+import Sidebar from "@/components/ui/data/Sidebar"
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <Sidebar/>
+    </div>
   )
 }
 
