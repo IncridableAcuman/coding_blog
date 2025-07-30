@@ -38,7 +38,8 @@ class PostController{
     async updatePost(req,res,next){
         try {
             const {id}=req.params;
-            const {title,description,image,category,tags}=req.body;
+            const {title,description,category,tags}=req.body;
+            const {image}=req.files;
             if(!Array.isArray(tags)){
                 return res.status(400).json({message:"Tags must be an array"});
             }
