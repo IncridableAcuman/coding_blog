@@ -2,8 +2,24 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger,Di
 import { Button } from "../button"
 import { Input } from "../input"
 import { Label } from "@radix-ui/react-label"
+import React, { useState } from "react"
+import { toast } from "sonner"
+import axiosInstance from "@/hooks/axiosInstance"
 
 const ForgotPassword = () => {
+  const [email,setEmail]=useState("");
+
+  const handleSubmit = async (e:React.FormEvent)=>{
+    e.preventDefault();
+    try {
+     const {data} = await axiosInstance.post("/auth/forgot-password",{email});
+      toast.success(data.message);
+    } catch (error) {
+      toast.error("An error occurred during registration. Please try again.");
+      console.log("Forgot password error:",error);
+    }
+  }
+  
   return (
     <>
     <Dialog>
@@ -21,8 +37,14 @@ const ForgotPassword = () => {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <Label htmlFor="reset-email">Email</Label>
-          <Input id="reset-email" type="email" placeholder="you@example.com" />
-          <Button type="submit" className="mt-2">Send Reset Link</Button>
+          <Input 
+          id="reset-email"
+           type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
+             required />
+          <Button type="submit" className="mt-2" onClick={handleSubmit}>Send Reset Link</Button>
         </div>
       </DialogContent>
     </Dialog>

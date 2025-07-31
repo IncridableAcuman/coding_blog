@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -51,6 +51,12 @@ const Login = () => {
     }
    
   }
+
+  useEffect(()=>{
+    if(localStorage.getItem("accessToken")){
+      navigate("/");
+    }
+  },[navigate])
 
   return (
     <>

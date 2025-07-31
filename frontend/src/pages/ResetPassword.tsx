@@ -2,8 +2,18 @@ import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 const ResetPassword = () => {
+    const navigate=useNavigate();
+
+    
+      useEffect(()=>{
+        if(localStorage.getItem("accessToken")){
+          navigate("/");
+        }
+      },[navigate]);
   return (
     <>
     <div className="w-full h-screen flex items-center justify-center">
