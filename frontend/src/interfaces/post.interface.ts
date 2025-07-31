@@ -5,6 +5,6 @@ export default interface IPost{
     author:string;
     image:string;
     category:string;
-    tags:[string];
+    tags:string[];
     createdAt:string
 }

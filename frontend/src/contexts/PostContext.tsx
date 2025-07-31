@@ -1,19 +1,20 @@
 import type IPost from "@/interfaces/post.interface";
+import type IPostContext from "@/interfaces/postContext.interface";
 import React, { createContext, useContext, useState } from "react";
 
 
-const PostContext=createContext<IPost | undefined >(undefined);
+const PostContext=createContext<IPostContext | undefined >(undefined);
 
 export const PostProvider=({children}:{children:React.ReactNode})=>{
 
-    const [postData,setPostDAta]=useState<IPost | null>(null);
+    const [postData,setPostData]=useState<IPost | null>(null);
 
-    const createPost=(data:IPost)=>{
-        setPostDAta(data);
+    const createPostData=(data:IPost | null)=>{
+        setPostData(data);
     }
 
     return (
-        <PostContext.Provider value={{postData,createPost}}>
+        <PostContext.Provider value={{postData,setPostData,createPostData}}>
             {children}
         </PostContext.Provider>
     );
