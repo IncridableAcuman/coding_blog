@@ -8,9 +8,11 @@ import BlogList from './pages/BlogList'
 import Comments from './pages/Comments'
 import Layout from './layout/Layout'
 import Blogboard from './pages/Blogboard'
+import { Toaster } from 'sonner'
 const App = () => {
   return (
     <>
+    <Toaster/>
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/login' element={<Login />} />

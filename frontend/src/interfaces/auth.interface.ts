@@ -1,6 +1,6 @@
-import type { IUser } from "./user.interface";
+import type  IUser  from "./user.interface";
 
-export interface IAuth{
+export default interface IAuth{
     user:IUser | null;
     accessToken:string | null;
     login:(user:IUser,token:string)=>void;
