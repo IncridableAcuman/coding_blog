@@ -10,9 +10,9 @@ const Blogboard = () => {
   return (
     <div className="w-full h-full px-4">
       {/* Statistic Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="flex flex-col md:flex-row items-center gap-4">
         {boardData.map((item, index) => (
-          <div key={index} className="flex items-center gap-6 bg-white p-4 shadow-md rounded-xl hover:shadow-lg transition duration-300">
+          <div key={index} className="flex items-center gap-6 w-64  bg-white p-4 shadow-md rounded-xl hover:shadow-lg transition duration-300">
             <div className="bg-gray-100 p-3 rounded-lg">
               {item.icon}
             </div>

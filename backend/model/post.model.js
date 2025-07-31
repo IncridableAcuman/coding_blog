@@ -13,6 +13,7 @@ const postSchema=new Schema({
         type:String,
         required:true,
         minlength:10,
+        maxlength:4000
     },
     author:{
         type:Schema.Types.ObjectId,

@@ -25,11 +25,11 @@ const BlogCards = () => {
   return (
     <div className="">
       <div className="flex items-center justify-center gap-4 py-5">
-        <p>All</p>
-        <p>Technology</p>
-        <p>Life</p>
-        <p>Development</p>
-        <p>Design</p>
+        <p className="">All</p>
+        <p className="">Technology</p>
+        <p className="">Life</p>
+        <p className="">Development</p>
+        <p className="">Design</p>
       </div>
  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
       {data.map((item, index) => (
