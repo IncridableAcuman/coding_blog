@@ -1,6 +1,12 @@
+import { useState } from "react";
 import { Card, CardHeader, CardTitle } from "../card";
 
 const BlogCards = () => {
+  const [isActive,setIsActive]=useState<string>("All");
+
+  const handleCategory=(category:string)=>{
+    setIsActive(category);
+  }
   const data = [
     {
       author: "John Doe",
@@ -25,11 +31,11 @@ const BlogCards = () => {
   return (
     <div className="">
       <div className="flex items-center justify-center gap-4 py-5">
-        <p className="">All</p>
-        <p className="">Technology</p>
-        <p className="">Life</p>
-        <p className="">Development</p>
-        <p className="">Design</p>
+        <p className={` cursor-pointer ${isActive==="All" ? "category":""}`} onClick={()=>handleCategory("All")}>All</p>
+        <p className={` cursor-pointer ${isActive==="Technology" ? "category":""}`} onClick={()=>handleCategory("Technology")}>Technology</p>
+        <p className={` cursor-pointer ${isActive==="Life" ? "category":""}`} onClick={()=>handleCategory("Life")}>Life</p>
+        <p className={` cursor-pointer ${isActive==="Development" ? "category":""}`} onClick={()=>handleCategory("Development")}>Development</p>
+        <p className={` cursor-pointer ${isActive==="Design" ? "category":""}`} onClick={()=>handleCategory("Design")}>Design</p>
       </div>
  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
       {data.map((item, index) => (

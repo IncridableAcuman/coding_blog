@@ -1,6 +1,8 @@
 import { List, ListChecksIcon, MessageCircle, NotepadText, X } from "lucide-react";
 
 const Blogboard = () => {
+
+
   const boardData = [
     { title: "Blogs", icon: <List className="w-8 h-8 text-blue-500" />, quantity: 10 },
     { title: "Comments", icon: <MessageCircle className="w-8 h-8 text-blue-500" />, quantity: 5 },
