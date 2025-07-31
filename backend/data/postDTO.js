@@ -6,7 +6,6 @@ module.exports=class PostDTO{
         this.author=model?.author?.username || model?.author;
         this.image=model.image;
         this.category=model.category;
-        this.tags=model.tags;
         this.createdAt=model.createdAt;
     }
 }

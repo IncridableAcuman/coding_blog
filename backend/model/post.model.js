@@ -27,10 +27,10 @@ const postSchema=new Schema({
         required:true,
         enum: ["tech", "life", "dev", "design"]
     },
-    tags:{
-        type:[String],
-        required:true
-    }
+    // tags:{
+    //     type:Array,
+    //     required:true
+    // }
 
 
 },{timestamps:true});

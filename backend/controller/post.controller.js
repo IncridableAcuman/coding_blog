@@ -5,14 +5,19 @@ class PostController{
     async createPost(req,res,next){
         try {
             const {id}=req.user;
-            const {title,description,image,category,tags}=req.body;
-            if(!Array.isArray(tags)){
-                return res.status(400).json({message:"Tags must be an array"});
-            }
-            const post=await postService.createPost(title,description,id,image,category,tags);
+            const {title,description,category}=req.body;
+            const {image}=req.files;
+            if (!image) {
+                return res.status(400).json({ message: "Image is required" });
+}
+            // if(!Array.isArray(tags)){
+            //     return res.status(400).json({message:"Tags must be an array"});
+            // }
+            const post=await postService.createPost(title,description,id,image,category);
             return res.status(201).json(post);
         } catch (error) {
             next(error);
+            console.error("Error creating post:", error);
         }
     }
     // get all posts
@@ -38,12 +43,12 @@ class PostController{
     async updatePost(req,res,next){
         try {
             const {id}=req.params;
-            const {title,description,category,tags}=req.body;
+            const {title,description,category}=req.body;
             const {image}=req.files;
-            if(!Array.isArray(tags)){
-                return res.status(400).json({message:"Tags must be an array"});
-            }
-            const post=await postService.updatePost(id,title,description,image,category,tags);
+            // if(!Array.isArray(tags)){
+            //     return res.status(400).json({message:"Tags must be an array"});
+            // }
+            const post=await postService.updatePost(id,title,description,image,category);
             return res.status(200).json(post);
         } catch (error) {
             next(error);

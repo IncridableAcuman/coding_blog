@@ -7,16 +7,16 @@ const fileService=require("./file.service");
 class PostService{
 
     // create post
-    async createPost(title,description,author,image,category,tags){
-        if(!title || !description || !author || !image || !category || !tags){
+    async createPost(title,description,author,image,category){
+        if(!title || !description || !author || !image || !category){
             throw BaseError.Badrequest();
         }
         const user=await User.findById(author);
         if(!user){
             throw BaseError.NotFoundError("User not found");
         }
-        const fileName=fileService.save(image);
-        const post=await Post.create({title,description,author,image: fileName,category,tags});
+        const fileName = await fileService.save(image);
+        const post=await Post.create({title,description,author,image: fileName,category});
         const populatePost=await post.populate("author");
         return new PostDTO(populatePost);
     }
@@ -34,15 +34,24 @@ class PostService{
         return new PostDTO(post);
     }
     // update post
-    async updatePost(id,title,description,image,category,tags){
-        if(!title || !description || !image || !category || !tags){
+    async updatePost(id,title,description,image,category){
+        if(!title || !description  || !category){
             throw BaseError.Badrequest();
         }
-        const post=await Post.findByIdAndUpdate(id, {title, description, image, category, tags}, {new: true}).populate("author");
-        if(!post){
-            throw BaseError.NotFoundError("Post not found");
-        }
-        return new PostDTO(post);
+        
+        const updateData = { title, description, category };
+
+        if (image) {
+        const fileName = await fileService.save(image);
+        updateData.image = fileName;
+    }
+
+    const post = await Post.findByIdAndUpdate(id, updateData, { new: true }).populate("author");
+    if (!post) {
+        throw BaseError.NotFoundError("Post not found");
+    }
+
+    return new PostDTO(post);
     }
     // delete post
     async deletePost(id){
@@ -61,13 +70,13 @@ class PostService{
         return posts.map(post => new PostDTO(post));
     }
     // get posts by tag
-    async getPostsByTag(tag){
-        const posts=await Post.find({tags: tag}).populate("author");
-        if(posts.length === 0){
-            throw BaseError.NotFoundError("No posts found with this tag");
-        }
-        return posts.map(post => new PostDTO(post));
-    }
+    // async getPostsByTag(tag){
+    //     const posts=await Post.find({tags: tag}).populate("author");
+    //     if(posts.length === 0){
+    //         throw BaseError.NotFoundError("No posts found with this tag");
+    //     }
+    //     return posts.map(post => new PostDTO(post));
+    // }
     // get posts by author
     async getPostsByAuthor(authorId){
         const posts=await Post.find({author: authorId}).populate("author");

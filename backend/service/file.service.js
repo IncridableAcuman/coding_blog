@@ -4,17 +4,17 @@ const {v4:uuidv4}=require('uuid');
 const BaseError=require("../error/base.error");
 class FileService{
 
-    save(file){
+     async save(file){
         try {
-            const fileName=uuidv4()+".jpg";
+            const fileName=uuidv4()+".png";
             const currentDir=__dirname;
-            const staticDir=path.join(currentDir,"..","uploads");
+            const staticDir=path.join(currentDir,"..","static");
             const filePath=path.join(staticDir,fileName);
 
             if(!fs.existsSync(staticDir)){
                 fs.mkdirSync(staticDir,{recursive:true});
             }
-            file.mv(filePath);
+            await file.mv(filePath);
 
             return fileName;
         } catch (error) {
