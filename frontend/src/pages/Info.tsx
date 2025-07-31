@@ -1,25 +1,14 @@
-import { Button } from "@/components/ui/button";
-import BlogCards from "@/components/ui/data/BlogCards";
-import Footer from "@/components/ui/data/Footer";
-import { ArrowRight } from "lucide-react"
-import { useNavigate } from "react-router-dom"
+import { Button } from "@/components/ui/button"
+import BlogCards from "@/components/ui/data/BlogCards"
+import Footer from "@/components/ui/data/Footer"
+import Navbar from "@/components/ui/data/Navbar"
 
-const Landing = () => {
-    const navigate=useNavigate();
+const Info = () => {
   return (
+    <>
     <div className="w-full min-h-screen">
-        <div className="fixed top-0 left-0 w-full flex items-center
-         justify-between p-4 bg-white border-b shadow z-50">
-            <h1 className="text-2xl font-bold uppercase">Coding.<span className="text-sky-500">B</span></h1>
-            <button className="flex items-center gap-2 bg-blue-400 text-white px-4 py-2 rounded-full
-         shadow-md cursor-pointer hover:bg-blue-500 transition-colors duration-300"
-          onClick={()=>navigate('/login')}>
-                Login
-                <ArrowRight/>
-            </button>
-        </div>
-        {/* blog cards */}
-        <div className="flex flex-col items-center justify-center">
+      <Navbar/>
+      <div className="flex flex-col items-center justify-center">
         <div className="text-center pt-30 px-4 space-y-8">
           <h1 className="text-4xl font-extrabold lg:text-5xl">Your own {""}
             <span className="text-sky-600">blogging</span> <br /> platform</h1>
@@ -31,8 +20,9 @@ const Landing = () => {
         </div>
           <BlogCards />
       </div>
-      {/* data and footer */}
-      <div className="flex flex-col items-center justify-center p-4">
+    </div>
+    {/* nerver miss a blog */}
+    <div className="flex flex-col items-center justify-center p-4">
       <h1 className="text-3xl font-semibold lg:text-4xl pt-10">Never Miss a Blog!</h1>
       <p className="pt-3 text-lg text-gray-400">Subscribe to get the latest blog, new tech, and exclusive news.</p>
       <div className="py-10 w-full  max-w-xl mx-auto">
@@ -42,8 +32,8 @@ const Landing = () => {
       </div>
     </div>
     <Footer/>
-    </div>
+    </>
   )
 }
 
-export default Landing
+export default Info

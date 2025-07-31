@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-import Landing from './pages/Landing'
 import Login from './pages/Login'
 import ResetPassword from './pages/ResetPassword'
 import AddBlog from './pages/AddBlog'
@@ -9,6 +8,7 @@ import Comments from './pages/Comments'
 import Layout from './layout/Layout'
 import Blogboard from './pages/Blogboard'
 import { Toaster } from 'sonner'
+import Landing from './pages/Landing'
 const App = () => {
   return (
     <>

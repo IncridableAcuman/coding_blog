@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import Landing from "./Landing"
+import Landing from "./Info"
 import { useEffect } from "react";
 
 const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if(!localStorage.getItem("accessToken")){
-      navigate("/login");
+      navigate("/landing");
     }
   }, [navigate]);
   return (
