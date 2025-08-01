@@ -1,3 +1,4 @@
+import axiosInstance from "@/hooks/axiosInstance";
 import type IPost from "@/interfaces/post.interface";
 import type IPostContext from "@/interfaces/postContext.interface";
 import React, { createContext, useContext, useState } from "react";
@@ -9,12 +10,13 @@ export const PostProvider=({children}:{children:React.ReactNode})=>{
 
     const [postData,setPostData]=useState<IPost | null>(null);
 
-    const createPostData=(data:IPost | null)=>{
+
+    const allPost = async () => {
+        const {data} = await axiosInstance.get("/post/all");
         setPostData(data);
     }
-
     return (
-        <PostContext.Provider value={{postData,setPostData,createPostData}}>
+        <PostContext.Provider value={{postData,setPostData,allPost}}>
             {children}
         </PostContext.Provider>
     );

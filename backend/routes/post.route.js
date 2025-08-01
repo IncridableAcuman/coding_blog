@@ -11,7 +11,7 @@ router.post("/create",
     body("category").isString(),
     body("tags").isArray({min:1,max:3}),
 authMiddleware,postController.createPost);
-router.get("/",postController.getAllPosts);
+router.get("/all",postController.getAllPosts);
 router.get("/:id",postController.getPostById);
 router.put("/:id",
     body("title").isLength({min:5,max:150}),
