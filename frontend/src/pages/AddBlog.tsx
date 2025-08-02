@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 const AddBlog = () => {
   const fileInputRef=useRef<HTMLInputElement | null>(null);
-  const [image,setImage]=useState('');
+  const [image,setImage]=useState<File | string>('');
   const [title,setTitle]=useState('');
   const [description,setDescription]=useState('');
   const [category,setCategory]=useState("");
@@ -17,6 +17,16 @@ const AddBlog = () => {
   const handleUploadClick=()=>{
     fileInputRef.current?.click();
   }
+
+  const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    const file=e.target.files?.[0];         
+    if(file){
+      const formData=new FormData();
+      formData.append("file",file);
+      setImage(file?.name);
+    }
+  }
+
 const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
       e.preventDefault();
       try {
@@ -42,10 +52,9 @@ const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
           <input type="file" 
           placeholder="Upload"
            ref={fileInputRef}
-           value={image}
-           onChange={(e)=>setImage(e.target.value)}
+           onChange={handleFileChange}
             className="hidden"
-             accept="static/*" />
+             accept="image/*" />
         </div>
         <Input type="text"
          placeholder="Text"
@@ -60,10 +69,10 @@ const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
       value={category}
       onChange={(e)=>setCategory(e.target.value)}
       >
-        <option value="">tech</option>
-        <option value="">life</option>
-        <option value="">dev</option>
-        <option value="">design</option>
+        <option value="tech">tech</option>
+        <option value="life">life</option>
+        <option value="dev">dev</option>
+        <option value="design">design</option>
       </select>
        <br />
       <Button type="submit" className="w-full py-3">Create Post</Button>

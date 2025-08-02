@@ -5,7 +5,7 @@ import { UsePost } from "@/contexts/PostContext";
 
 const BlogCards = () => {
   const [isActive,setIsActive]=useState<string>("All");
-  //const [posts,setPosts]=useState([]);
+  const [posts,setPosts]=useState([]);
   const {postData,allPost}=UsePost();
 
   const handleCategory=(category:string)=>{
@@ -17,7 +17,7 @@ const BlogCards = () => {
   useEffect(()=>{
     const handlePost = async ()=>{
     try {
-      allPost();
+      await allPost();
     } catch (error) {
       console.log(error);
       toast.error("Internal Server Error");
@@ -26,27 +26,11 @@ const BlogCards = () => {
     handlePost();
   },[postData,allPost]);
 
-
-  // const data = [
-  //   {
-  //     author: "John Doe",
-  //     title: "A concise, catchy headline for the blog post.",
-  //     description: "A brief excerpt or teaser text to entice readers.",
-  //     category: "Technology",
-  //     tags: ["Tech", "Innovation"],
-  //     publishedDate: "July 29, 2025",
-  //     image: "./adult-person-working-home-late-night.jpg",
-  //   },
-  //   {
-  //     author: "Jane Smith",
-  //     title: "Another catchy headline for a different blog post.",
-  //     description: "An intriguing excerpt to draw readers in.",
-  //     category: "Lifestyle",
-  //     tags: ["Lifestyle", "Wellness"],
-  //     publishedDate: "August 5, 2025",
-  //     image: "./close-up-person-working-home-night.jpg",
-  //   },
-  // ];
+  useEffect(()=>{
+    if(isActive==="All"){
+      
+    }
+  },[]);
 
   return (
     <div className="">
@@ -65,7 +49,7 @@ const BlogCards = () => {
         >
           <CardHeader className="p-0">
             <img
-              src={item?.image}
+              src={`http://localhost:8080/${item?.image}`}
               alt={item?.title}
               className="w-full h-48 object-cover rounded-t-2xl"
             />
