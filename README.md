@@ -8,64 +8,44 @@ Welcome to the **Coding Blog Website** – a full-stack blogging platform where 
 
 ### 📦 Backend Structure
 
-### backend/
-   - ├── config/
-   - ├── controller/
-   - ├── data/ # DTO (Data Transfer Objects)
-   - ├── error/
-   - ├── middleware/
-   - ├── model/
-   - ├── routes/
-   - ├── service/
-   - └── index.js
-
-### 🧩 Frontend Structure
-### frontend/
-    - ├── components/
-    - ├── contexts/
-    - ├── hooks/
-    - ├── interfaces/
-    - ├── layout/
-    - └── pages/
 
 ---
 
 ## ⚙️ Technologies Used
 
 ### 🛠️ Backend
-- `bcryptjs`
-- `cookie-parser`
-- `cors`
-- `dotenv`
-- `express`
-- `express-fileupload`
-- `express-validator`
-- `jsonwebtoken`
-- `mongoose`
-- `nodemailer`
-- `uuid`
-- `path`
-- `fs`
+- [`bcryptjs`](https://www.npmjs.com/package/bcryptjs)
+- [`cookie-parser`](https://www.npmjs.com/package/cookie-parser)
+- [`cors`](https://www.npmjs.com/package/cors)
+- [`dotenv`](https://www.npmjs.com/package/dotenv)
+- [`express`](https://www.npmjs.com/package/express)
+- [`express-fileupload`](https://www.npmjs.com/package/express-fileupload)
+- [`express-validator`](https://www.npmjs.com/package/express-validator)
+- [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken)
+- [`mongoose`](https://www.npmjs.com/package/mongoose)
+- [`nodemailer`](https://www.npmjs.com/package/nodemailer)
+- [`uuid`](https://www.npmjs.com/package/uuid)
+- `path`, `fs` (Node.js built-in)
 
 ### 🎨 Frontend
-- `Tailwind CSS`
-- `Shadcn UI`
-- `React Router DOM`
-- `Lucide React`
-- `Axios`
-- `React Pro Sidebar`
-- `Framer Motion`
+- [`Tailwind CSS`](https://tailwindcss.com/)
+- [`Shadcn UI`](https://ui.shadcn.com/)
+- [`React Router DOM`](https://reactrouter.com/)
+- [`Lucide React`](https://lucide.dev/)
+- [`Axios`](https://axios-http.com/)
+- [`React Pro Sidebar`](https://github.com/azouaoui-med/react-pro-sidebar)
+- [`Framer Motion`](https://www.framer.com/motion/)
 
 ---
 
 ## 🔐 Authentication Features
 
-1. ✅ Register
-2. 🔐 Login
-3. ♻️ Refresh Token
-4. 🚪 Logout
-5. 📧 Forgot Password
-6. 🔄 Reset Password
+1. ✅ **Register**
+2. 🔐 **Login**
+3. ♻️ **Refresh Token**
+4. 🚪 **Logout**
+5. 📧 **Forgot Password**
+6. 🔄 **Reset Password**
 
 ---
 
@@ -73,7 +53,9 @@ Welcome to the **Coding Blog Website** – a full-stack blogging platform where 
 
 **Izzatbek Abdusharipov**
 
+- GitHub: [@your-github](https://github.com/IncridableAcuman)  
+- Email: abdusharipovizzat03@gmail.com
+
 ---
 
 ## 📁 License
-
