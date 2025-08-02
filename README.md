@@ -7,25 +7,26 @@ Welcome to the **Coding Blog Website** – a full-stack blogging platform where 
 ## 🏗️ Project Architecture
 
 ### 📦 Backend Structure
-backend/
-├── config/
-├── controller/
-├── data/ # DTO (Data Transfer Objects)
-├── error/
-├── middleware/
-├── model/
-├── routes/
-├── service/
-└── index.js
+
+### backend/
+   - ├── config/
+   - ├── controller/
+   - ├── data/ # DTO (Data Transfer Objects)
+   - ├── error/
+   - ├── middleware/
+   - ├── model/
+   - ├── routes/
+   - ├── service/
+   - └── index.js
 
 ### 🧩 Frontend Structure
-frontend/
-├── components/
-├── contexts/
-├── hooks/
-├── interfaces/
-├── layout/
-└── pages/
+### frontend/
+    - ├── components/
+    - ├── contexts/
+    - ├── hooks/
+    - ├── interfaces/
+    - ├── layout/
+    - └── pages/
 
 ---
 
