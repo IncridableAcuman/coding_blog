@@ -98,7 +98,6 @@ class AuthService{
         const hashPassword=await bcrypt.hash(password,10);
         user.password=hashPassword;
         user.save();
-        await tokenService.removeToken(token);
         return {message:"Password updated successfully"};
     }
 }

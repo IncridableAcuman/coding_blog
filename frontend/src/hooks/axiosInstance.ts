@@ -33,7 +33,7 @@ axiosInstance.interceptors.response.use(
                 window.location.href="/landing";
             }
         }
-        
+        return () => Promise.reject(error);
     }
 );
 

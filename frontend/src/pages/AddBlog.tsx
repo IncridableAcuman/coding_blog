@@ -28,7 +28,7 @@ const AddBlog = () => {
 const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
       e.preventDefault();
      if (!image || !(image instanceof File)) {
-    toast.error("Iltimos, rasm tanlang.");
+    toast.error("PLease upload an image");
     return;
   }
 
@@ -39,8 +39,13 @@ const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
       formData.append("category",category);
 
       try {
-        const {data}=await axiosInstance.post("/post/create",formData);
-        console.log(data)
+        await axiosInstance.post("/post/create",formData);
+        toast.success("Post created successfully");
+        setTitle('');
+        setDescription('');
+        setImage(null);
+        setCategory('');
+        fileInputRef.current!.value = ''; // Reset the file input
       } catch (error) {
       toast.error("Internal Server Error");
       console.log(error); 
