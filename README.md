@@ -1,70 +1,78 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Izzatbek</title>
-</head>
-<body>
+# 🧠 Coding Blog Platform
 
+Welcome to the **Coding Blog Website** – a full-stack blogging platform where users can share technical content, manage accounts, and enjoy smooth UI/UX with modern features.
 
-        Coding Blog website!
+---
 
-        ## Backend Architecture
-        - Configuration
-        - Controller
-        - Data Transfer Object->Data
-        - error
-        - middleware
-        - model
-        - routes
-        - service
-        index.js
+## 🏗️ Project Architecture
 
-        ## Frontend Architecture
-        - components
-        - contexts
-        - hooks
-        - interfaces
-        - layout
-        - pages
+### 📦 Backend Structure
+backend/
+├── config/
+├── controller/
+├── data/ # DTO (Data Transfer Objects)
+├── error/
+├── middleware/
+├── model/
+├── routes/
+├── service/
+└── index.js
 
-        ## Backend Technology
-        - bcryptjs
-        - cookie-parser
-        - cors
-        - dotenv
-        - express
-        - express-fileupload
-        - express-validator
-        - jsonwebtoken
-        - mongoose
-        - nodemailer
-        - uuid
-        - path
-        - fs
+### 🧩 Frontend Structure
+frontend/
+├── components/
+├── contexts/
+├── hooks/
+├── interfaces/
+├── layout/
+└── pages/
 
-        ## Frontend Technology
-        - Tailwindcss
-        - Shadcn UI
-        - react0router-dom
-        - lucide-react
-        - axios
-        - react-pro-sidebar
-        - framer-motion
-        
-        # Authentication
-        1. register
-        2. login
-        3. refresh
-        4. logout
-        5. forgot password
-        6. reset password
-        
-        
-        
-        
-        
-        
-        
-</body>
-</html>
+---
+
+## ⚙️ Technologies Used
+
+### 🛠️ Backend
+- `bcryptjs`
+- `cookie-parser`
+- `cors`
+- `dotenv`
+- `express`
+- `express-fileupload`
+- `express-validator`
+- `jsonwebtoken`
+- `mongoose`
+- `nodemailer`
+- `uuid`
+- `path`
+- `fs`
+
+### 🎨 Frontend
+- `Tailwind CSS`
+- `Shadcn UI`
+- `React Router DOM`
+- `Lucide React`
+- `Axios`
+- `React Pro Sidebar`
+- `Framer Motion`
+
+---
+
+## 🔐 Authentication Features
+
+1. ✅ Register
+2. 🔐 Login
+3. ♻️ Refresh Token
+4. 🚪 Logout
+5. 📧 Forgot Password
+6. 🔄 Reset Password
+
+---
+
+## 📌 Author
+
+**Izzatbek Abdusharipov**
+
+---
+
+## 📁 License
+
