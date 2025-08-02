@@ -6,7 +6,7 @@ class FileService{
 
      async save(file){
         try {
-            const fileName=uuidv4()+".png";
+            const fileName=uuidv4()+(".jpg" | ".png");
             const currentDir=__dirname;
             const staticDir=path.join(currentDir,"..","static");
             const filePath=path.join(staticDir,fileName);

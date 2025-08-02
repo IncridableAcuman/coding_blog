@@ -9,7 +9,6 @@ router.post("/create",
     body("title").isLength({min:5,max:150}),
     body("description").isLength({min:10,max:4000}),
     body("category").isString(),
-    body("tags").isArray({min:1,max:3}),
 authMiddleware,postController.createPost);
 router.get("/all",postController.getAllPosts);
 router.get("/:id",postController.getPostById);
@@ -17,7 +16,6 @@ router.put("/:id",
     body("title").isLength({min:5,max:150}),
     body("description").isLength({min:10,max:4000}),
     body("category").isString(),
-    body("tags").isArray({min:1,max:3}),
     authMiddleware,postController.updatePost);
 router.delete("/:id",authMiddleware,postController.deletePost);
 router.get("/category/:category",postController.getPostsByCategory);

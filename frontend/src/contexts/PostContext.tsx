@@ -8,7 +8,7 @@ const PostContext=createContext<IPostContext | undefined >(undefined);
 
 export const PostProvider=({children}:{children:React.ReactNode})=>{
 
-    const [postData,setPostData]=useState<IPost | null>(null);
+    const [postData,setPostData]=useState<[IPost] | [null]>([null]);
 
 
     const allPost = async () => {
