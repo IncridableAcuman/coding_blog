@@ -7,12 +7,17 @@
 <body>
 
 
-        <h1>Coding Blog website!</h1>
+        Coding Blog website!
 
         ## Backend Architecture
         - Configuration
         - Controller
         - Data Transfer Object->Data
-        
+        - error
+        - middleware
+        - model
+        - routes
+        - service
+        index.js
 </body>
 </html>
