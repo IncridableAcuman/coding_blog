@@ -10,9 +10,7 @@ class PostController{
             if (!image) {
                 return res.status(400).json({ message: "Image is required" });
 }
-            // if(!Array.isArray(tags)){
-            //     return res.status(400).json({message:"Tags must be an array"});
-            // }
+            
             const post=await postService.createPost(title,description,id,image,category);
             return res.status(201).json(post);
         } catch (error) {

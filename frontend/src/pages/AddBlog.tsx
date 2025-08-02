@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 const AddBlog = () => {
   const fileInputRef=useRef<HTMLInputElement | null>(null);
-  const [image,setImage]=useState<File | string>('');
+  const [image,setImage]=useState<File | null>(null);
   const [title,setTitle]=useState('');
   const [description,setDescription]=useState('');
   const [category,setCategory]=useState("");
@@ -21,16 +21,25 @@ const AddBlog = () => {
   const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
     const file=e.target.files?.[0];         
     if(file){
-      const formData=new FormData();
-      formData.append("file",file);
-      setImage(file?.name);
+      setImage(file);
     }
   }
 
 const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
       e.preventDefault();
+     if (!image || !(image instanceof File)) {
+    toast.error("Iltimos, rasm tanlang.");
+    return;
+  }
+
+      const formData=new FormData();
+      formData.append("title",title);
+      formData.append("description",description);
+      formData.append('image',image);
+      formData.append("category",category);
+
       try {
-        const {data}=await axiosInstance.post("/post/create",{title,description,image,category});
+        const {data}=await axiosInstance.post("/post/create",formData);
         console.log(data)
       } catch (error) {
       toast.error("Internal Server Error");
@@ -48,7 +57,7 @@ const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
          hover:shadow-lg transition duration-300" onClick={handleUploadClick}
           >
           <UploadCloud/>
-          <p>Upload</p>
+          <p>{image instanceof File ? image.name : "Upload"}</p>
           <input type="file" 
           placeholder="Upload"
            ref={fileInputRef}
@@ -69,6 +78,7 @@ const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
       value={category}
       onChange={(e)=>setCategory(e.target.value)}
       >
+        <option value="">Select category</option>
         <option value="tech">tech</option>
         <option value="life">life</option>
         <option value="dev">dev</option>
