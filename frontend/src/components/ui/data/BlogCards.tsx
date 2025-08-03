@@ -71,7 +71,7 @@ const BlogCards = () => {
               <CardTitle className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition">
                 {item?.title}
               </CardTitle>
-              <p className="text-sm text-gray-600">{item?.description}</p>
+              <p className="text-sm text-gray-600">{item?.description.slice(0, 100)}...</p>
               <p className="text-xs text-gray-500">
                 By <span className="font-medium">{item?.author}</span> &nbsp;|&nbsp;
                 {item?.createdAt.slice(0, 10)}

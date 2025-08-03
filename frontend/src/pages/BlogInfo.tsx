@@ -19,11 +19,20 @@ const BlogInfo = () => {
         };
         fetchPost();
     }, [allPost, id]);
+    
   return (
-    <div className="flex items-center justify-center pt-24">
+    <div className="flex items-center justify-center pt-24 text-center">
         <div className="flex flex-col">
-                <img src={`http://localhost:8080/${post.image}`} alt={post.title} />
-                
+            <div className="">
+                <p>{post.createdAt.slice(0,10)}</p>
+                <h1>{post.title}</h1>
+                <p>{post.title}</p>
+                <h2>{post.author}</h2>
+            </div>
+                <img src={`http://localhost:8080/${post.image}`}
+                 alt={post.title}
+                 className="w-full max-w-3xl h-[70vh]"
+                  />
             </div>
     </div>
   )
