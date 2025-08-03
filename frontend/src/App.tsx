@@ -9,6 +9,7 @@ import Layout from './layout/Layout'
 import Blogboard from './pages/Blogboard'
 import { Toaster } from 'sonner'
 import Landing from './pages/Landing'
+import BlogInfo from './pages/BlogInfo'
 const App = () => {
   return (
     <>
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='list' element={<BlogList/>} />
         <Route path='comment' element={<Comments/>} />
       </Route>
+      <Route path='/blog/:id' element={<BlogInfo/>} />
     </Routes>
     </>
   )

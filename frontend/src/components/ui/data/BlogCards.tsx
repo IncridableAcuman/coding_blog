@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle } from "../card";
 import { toast } from "sonner";
 import { UsePost } from "@/contexts/PostContext";
+import { useNavigate } from "react-router-dom";
 
 const BlogCards = () => {
   const [isActive, setIsActive] = useState<string>("All");
   const { postData, allPost } = UsePost();
+  const navigate=useNavigate();
 
   const handleCategory = (category: string) => {
     setIsActive(category);
@@ -22,6 +24,7 @@ const BlogCards = () => {
     };
     handlePost();
   }, [allPost]);
+
 
   const filteredPost =
     isActive === "All"
@@ -59,8 +62,10 @@ const BlogCards = () => {
               <img
                 src={`http://localhost:8080/${item?.image}`}
                 alt={item?.title}
-                className="w-full h-48 object-cover rounded-t-2xl"
+                className="w-full h-48 object-cover rounded-t-2xl cursor-pointer"
+                onClick={()=>navigate(`/blog/${item?._id}`)}
               />
+              
             </CardHeader>
             <div className="p-4 space-y-2">
               <CardTitle className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition">
