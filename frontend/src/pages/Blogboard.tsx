@@ -1,4 +1,5 @@
-import { List, ListChecksIcon, MessageCircle, NotepadText, X } from "lucide-react";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { List, ListChecksIcon, MessageCircle, NotepadText } from "lucide-react";
 
 const Blogboard = () => {
 
@@ -32,35 +33,26 @@ const Blogboard = () => {
           <ListChecksIcon className="w-6 h-6 text-blue-500" />
           <h3 className="font-semibold text-lg">Latest Blogs</h3>
         </div>
-
-        {/* Responsive Table */}
-        <div className="overflow-x-auto bg-white rounded-md shadow">
-          <table className="w-full divide-y divide-gray-200 text-sm">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="px-6 py-3 text-left font-bold uppercase">#</th>
-                <th className="px-6 py-3 text-left font-bold uppercase">Blog Title</th>
-                <th className="px-6 py-3 text-left font-bold uppercase">Date</th>
-                <th className="px-6 py-3 text-left font-bold uppercase">Category</th>
-                <th className="px-6 py-3 text-left font-bold uppercase">Tags</th>
-                <th className="px-6 py-3"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">1</td>
-                <td className="px-6 py-4 whitespace-nowrap">The Rise of Artificial Intelligence in Modern Technology</td>
-                <td className="px-6 py-4 whitespace-nowrap">Wed May 28 2025</td>
-                <td className="px-6 py-4 whitespace-nowrap">Technology</td>
-                <td className="px-6 py-4 whitespace-nowrap">tech, dev</td>
-                <td className="px-6 py-4 whitespace-nowrap text-right">
-                  <button className="text-red-500 hover:text-red-700">
-                    <X size={16} />
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="w-full max-w-4xl overflow-x-auto">
+                <Table className="w-full">
+                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[100px]">Invoice</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Method</TableHead>
+                    <TableHead className="text-right">Amount</TableHead>
+                  </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell className="font-medium">INV001</TableCell>
+                <TableCell>Paid</TableCell>
+                <TableCell>Credit Card</TableCell>
+                <TableCell className="text-right">$250.00</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
       </div>
     </div>

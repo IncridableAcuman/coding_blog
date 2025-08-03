@@ -4,6 +4,7 @@ import Footer from "@/components/ui/data/Footer";
 import Navbar from "@/components/ui/data/Navbar";
 import { Textarea } from "@/components/ui/textarea";
 import { UsePost } from "@/contexts/PostContext";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -50,8 +51,7 @@ const BlogInfo = () => {
     </div> 
     {/* comments */}
     <div className="flex flex-col items-center justify-center py-24 px-5 lg:px-0">
-        <h3 className="text-2xl font-semibold">Comments</h3>
-        <div className="mt-4 bg-sky-100 p-4 rounded-lg w-full max-w-3xl">
+        <div className="mt-4 bg-sky-50 p-4 rounded-lg w-full max-w-3xl">
             <Accordion type="single" collapsible>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>Comments(2)</AccordionTrigger>
@@ -70,6 +70,14 @@ const BlogInfo = () => {
       <Button>Send message</Button>
     </div>
     </div> 
+    <div className="flex flex-col items-center justify-center pb-10">
+        <h2 className="font-semibold py-3 w-full max-w-lg mx-auto ">Share this article on social media</h2>
+        <div className="flex items-center gap-3 w-full max-w-lg mx-auto ">
+            <Facebook />
+            <Instagram/>
+            <Twitter/>
+        </div>
+    </div>
     <Footer/>
     </>
 
