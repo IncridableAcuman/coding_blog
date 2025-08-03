@@ -6,6 +6,7 @@ import { UploadCloud } from "lucide-react"
 import React, { useRef, useState } from "react"
 import { toast } from "sonner"
 
+
 const AddBlog = () => {
   const fileInputRef=useRef<HTMLInputElement | null>(null);
   const [image,setImage]=useState<File | null>(null);
