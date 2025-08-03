@@ -63,7 +63,7 @@ const BlogCards = () => {
                 src={`http://localhost:8080/${item?.image}`}
                 alt={item?.title}
                 className="w-full h-48 object-cover rounded-t-2xl cursor-pointer"
-                onClick={()=>navigate(`/blog/${item?._id}`)}
+                onClick={()=>navigate(`/blog/${item?.id}`)}
               />
               
             </CardHeader>
