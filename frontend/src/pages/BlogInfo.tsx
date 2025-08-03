@@ -64,7 +64,7 @@ const BlogInfo = () => {
     </div>
     {/* writing  comments */}
     <div className="flex flex-col items-center justify-center py-24">
-        <p className="pb-4 text-xl font-semibold">Add your comment:{username}</p>
+        <p className="pb-4 text-xl font-semibold">Write a comment:{" "}{username}</p>
      <div className="grid w-full max-w-lg gap-2">
       <Textarea placeholder="Type your message here." />
       <Button>Send message</Button>

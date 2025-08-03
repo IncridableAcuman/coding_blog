@@ -76,7 +76,10 @@ const BlogCards = () => {
                 By <span className="font-medium">{item?.author}</span> &nbsp;|&nbsp;
                 {item?.createdAt.slice(0, 10)}
               </p>
-              <p className="text-xs text-gray-500 italic">Category: {item?.category}</p>
+              <div className="flex items-center justify-between p-2">
+                <p className="text-xs text-gray-500 italic">Category: {item?.category}</p>
+                <button className="text-xs cursor-pointer hover:underline">Update</button>
+              </div>
             </div>
           </Card>
         ))}
