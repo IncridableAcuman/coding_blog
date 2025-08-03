@@ -1,5 +1,8 @@
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import Footer from "@/components/ui/data/Footer";
 import Navbar from "@/components/ui/data/Navbar";
+import { Textarea } from "@/components/ui/textarea";
 import { UsePost } from "@/contexts/PostContext";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -7,6 +10,8 @@ import { useParams } from "react-router-dom";
 const BlogInfo = () => {
     const { id } = useParams<{ id: string }>();
    const { postData, allPost } = UsePost();
+   const user=localStorage.getItem("user");
+   const username:string= user ? JSON.parse(user).username : "";
        useEffect(()=>{
                 const fetchPost = async () => {
             try {
@@ -26,7 +31,7 @@ const BlogInfo = () => {
   return (
     <>
     <Navbar/>
-    <div className="flex items-center justify-center pt-24 text-center">
+    <div className="flex items-center justify-center pt-24 text-center px-5 lg:px-0">
         <div className="flex flex-col">
             <div className="space-y-4">
                 <p className="text-blue-500 text-xl font-semibold">Published: {" "} {post.createdAt.slice(0,10)}</p>
@@ -42,10 +47,28 @@ const BlogInfo = () => {
                     <p className="text-xl">{post.description}</p>
                   </div>
             </div>
-    </div>   
+    </div> 
+    {/* comments */}
+    <div className="flex flex-col items-center justify-center py-24 px-5 lg:px-0">
+        <h3 className="text-2xl font-semibold">Comments</h3>
+        <div className="mt-4 bg-sky-100 p-4 rounded-lg w-full max-w-3xl">
+            <Accordion type="single" collapsible>
+                <AccordionItem value="item-1">
+                    <AccordionTrigger>Comments(2)</AccordionTrigger>
+                    <AccordionContent>
+                    Yes. It adheres to the WAI-ARIA design pattern.
+                    </AccordionContent>
+                </AccordionItem>
+        </Accordion>
+        </div>
+    </div>
     {/* writing  comments */}
     <div className="flex flex-col items-center justify-center py-24">
-    a
+        <p className="pb-4 text-xl font-semibold">Add your comment:{username}</p>
+     <div className="grid w-full max-w-lg gap-2">
+      <Textarea placeholder="Type your message here." />
+      <Button>Send message</Button>
+    </div>
     </div> 
     <Footer/>
     </>
