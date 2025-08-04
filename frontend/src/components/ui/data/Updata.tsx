@@ -56,8 +56,7 @@ const Updata = ({id} : {id: string | undefined}) => {
     <>
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="mr-0 inline-block text-xs underline-offset-4 hover:underline 
-         hover:text-sky-500 transition duration-300 cursor-pointer" variant={'outline'}>Update</Button>
+        <Button variant={'outline'}>Update</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader className="flex items-center justify-center">
@@ -71,6 +70,7 @@ const Updata = ({id} : {id: string | undefined}) => {
               <div className="p-4 rounded-md w-52 shadow-md cursor-pointer
                 hover:shadow-lg transition duration-300" onClick={handleUploadClick}>
                   <UploadCloud/>
+                  <p>{image?.name || "Upload an image"}</p>
                 <Input type="file"
                  className="hidden"
                   ref={fileInputRef}

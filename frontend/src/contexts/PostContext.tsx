@@ -15,6 +15,7 @@ export const PostProvider=({children}:{children:React.ReactNode})=>{
         const {data} = await axiosInstance.get("/post/all");
         setPostData(data);
     }
+
     
     return (
         <PostContext.Provider value={{postData,setPostData,allPost}}>

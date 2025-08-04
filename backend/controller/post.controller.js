@@ -43,9 +43,6 @@ class PostController{
             const {id}=req.params;
             const {title,description,category}=req.body;
             const {image}=req.files;
-            // if(!Array.isArray(tags)){
-            //     return res.status(400).json({message:"Tags must be an array"});
-            // }
             const post=await postService.updatePost(id,title,description,image,category);
             return res.status(200).json(post);
         } catch (error) {

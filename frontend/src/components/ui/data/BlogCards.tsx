@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const BlogCards = () => {
   const [isActive, setIsActive] = useState<string>("All");
   const { postData, allPost } = UsePost();
+    const user=localStorage.getItem("user");
   const navigate=useNavigate();
 
   const handleCategory = (category: string) => {
@@ -59,13 +60,20 @@ const BlogCards = () => {
             className="shadow-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl rounded-2xl overflow-hidden bg-white"
           >
             <CardHeader className="p-0">
+              {user ?(
               <img
                 src={`http://localhost:8080/${item?.image}`}
                 alt={item?.title}
                 className="w-full h-48 object-cover rounded-t-2xl cursor-pointer"
                 onClick={()=>navigate(`/blog/${item?.id}`)}
               />
-              
+              ): (
+                <img
+                src={`http://localhost:8080/${item?.image}`}
+                alt={item?.title}
+                className="w-full h-48 object-cover rounded-t-2xl cursor-pointer"
+              />
+              ) }   
             </CardHeader>
             <div className="p-4 space-y-2">
               <CardTitle className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition">

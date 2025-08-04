@@ -3,17 +3,31 @@ import { Button } from "@/components/ui/button";
 import Footer from "@/components/ui/data/Footer";
 import Navbar from "@/components/ui/data/Navbar";
 import Updata from "@/components/ui/data/Updata";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { UsePost } from "@/contexts/PostContext";
+import axiosInstance from "@/hooks/axiosInstance";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 const BlogInfo = () => {
     const { id } = useParams<{ id: string }>();
    const { postData, allPost } = UsePost();
    const user=localStorage.getItem("user");
    const username:string= user ? JSON.parse(user).username : "";
+   const handleDelete = async ()=>{
+        try {
+            await axiosInstance.delete(`/post/delete/${id}`);
+                toast.success("Post deleted successfully");
+            allPost(); // Refresh the post list after deletion
+        } catch (error) {
+            console.log(error);
+            toast.error("Post deleted failed!");
+        }
+    }
+
        useEffect(()=>{
                 const fetchPost = async () => {
             try {
@@ -50,7 +64,21 @@ const BlogInfo = () => {
                   </div>
                   <div className="flex items-center gap-4 pt-8 mx-auto">
                     <Updata id={id}/>
-                    <Button variant={'outline'}>Delete</Button>
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Button variant={'outline'} >Delete</Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogTitle>Are you want delete!</DialogTitle>
+                            <DialogDescription>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, consectetur?
+                            </DialogDescription>
+                            <div className="flex items-center gap-5 py-3">
+                                <Button>Cancel</Button>
+                                <Button variant={'destructive'} onClick={handleDelete}>Next</Button>
+                            </div>
+                        </DialogContent>
+                    </Dialog>
                   </div>
             </div>
     </div> 
