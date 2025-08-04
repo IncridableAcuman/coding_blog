@@ -5,6 +5,7 @@ const cookieParser=require("cookie-parser");
 const db=require("./config/db.config");
 const authRoutes=require("./routes/auth.route");
 const postRoutes=require("./routes/post.route");
+const commentRoutes=require('./routes/comment.route');
 const fileUpload=require('express-fileupload');
 
 const errorMiddleware=require("./middleware/error.middleware");
@@ -18,6 +19,7 @@ app.use(express.static("static")); // Serve static files from the "static" direc
 app.use(fileUpload({}));
 app.use("/api/auth",authRoutes);
 app.use("/api/post",postRoutes);
+app.use("/api/comment",commentRoutes);
 db();
 // Error handling middleware
 app.use(errorMiddleware);

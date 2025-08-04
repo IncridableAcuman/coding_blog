@@ -20,10 +20,14 @@ const BlogInfo = () => {
    const username:string= user ? JSON.parse(user).username : "";
    const handleDelete = async ()=>{
         try {
-            await axiosInstance.delete(`/post/${id}`);
-            toast.success("Post deleted successfully");
-            allPost(); // Refresh the post list after deletion
-            navigate("/");
+            const {data}=await axiosInstance.delete(`/post/${id}`);
+            if(data){
+                toast.success("Post deleted successfully");
+                allPost(); // Refresh the post list after deletion
+                navigate("/");
+            }else{
+                toast.info("Only author can edit this post.");
+            }
         } catch (error) {
             console.log(error);
             toast.error("Post deleted failed!");
@@ -65,22 +69,26 @@ const BlogInfo = () => {
                     <p className="text-xl">{post.description}</p>
                   </div>
                   <div className="flex items-center gap-4 pt-8 mx-auto">
-                    <Updata id={id}/>
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <Button variant={'outline'} >Delete</Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                            <DialogTitle>Are you want delete!</DialogTitle>
-                            <DialogDescription>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, consectetur?
-                            </DialogDescription>
-                            <div className="flex items-center gap-5 py-3">
-                                <Button>Cancel</Button>
-                                <Button variant={'destructive'} onClick={handleDelete}>Next</Button>
-                            </div>
-                        </DialogContent>
-                    </Dialog>
+                    {post?.author===username && (
+                        <div>
+                            <Updata id={id}/>
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button variant={'outline'} >Delete</Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogTitle>Are you want delete!</DialogTitle>
+                                    <DialogDescription>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, consectetur?
+                                    </DialogDescription>
+                                    <div className="flex items-center gap-5 py-3">
+                                        <Button>Cancel</Button>
+                                        <Button variant={'destructive'} onClick={handleDelete}>Next</Button>
+                                    </div>
+                                </DialogContent>
+                                </Dialog>
+                        </div>
+                    )}
                   </div>
             </div>
     </div> 
