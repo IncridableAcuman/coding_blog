@@ -47,16 +47,21 @@ class PostController{
             return res.status(200).json(post);
         } catch (error) {
             next(error);
+            console.log(error);
         }
     }
     // delete post
     async deletePost(req,res,next){
         try {
             const {id}=req.params;
+            if (!id) {
+                return res.status(400).json({ message: "Post ID is required" });
+            }
             const response=await postService.deletePost(id);
             return res.status(200).json(response);
         } catch (error) {
             next(error);
+            console.error("Error deleting post:", error);
         }
     }
     // get posts by category

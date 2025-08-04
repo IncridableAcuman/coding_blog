@@ -19,7 +19,7 @@ const BlogInfo = () => {
    const username:string= user ? JSON.parse(user).username : "";
    const handleDelete = async ()=>{
         try {
-            await axiosInstance.delete(`/post/delete/${id}`);
+            await axiosInstance.delete(`/post/${id}`);
                 toast.success("Post deleted successfully");
             allPost(); // Refresh the post list after deletion
         } catch (error) {
