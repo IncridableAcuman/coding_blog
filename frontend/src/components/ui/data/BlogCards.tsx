@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle } from "../card";
 import { toast } from "sonner";
 import { UsePost } from "@/contexts/PostContext";
 import { useNavigate } from "react-router-dom";
+import Updata from "./Updata";
 
 const BlogCards = () => {
   const [isActive, setIsActive] = useState<string>("All");
@@ -78,7 +79,9 @@ const BlogCards = () => {
               </p>
               <div className="flex items-center justify-between p-2">
                 <p className="text-xs text-gray-500 italic">Category: {item?.category}</p>
-                <button className="text-xs cursor-pointer hover:underline">Update</button>
+                  <div className="">
+                    <Updata/>
+                  </div>
               </div>
             </div>
           </Card>

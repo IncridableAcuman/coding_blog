@@ -23,7 +23,7 @@ const Blogboard = () => {
   },[allPost]);
 
   return (
-    <div className="w-full h-full px-4">
+    <div className="w-full h-full">
       {/* Statistic Cards */}
       <div className="flex flex-col md:flex-row items-center gap-4">
         {boardData.map((item, index) => (
