@@ -9,19 +9,21 @@ import { UsePost } from "@/contexts/PostContext";
 import axiosInstance from "@/hooks/axiosInstance";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 const BlogInfo = () => {
     const { id } = useParams<{ id: string }>();
    const { postData, allPost } = UsePost();
    const user=localStorage.getItem("user");
+   const navigate = useNavigate();
    const username:string= user ? JSON.parse(user).username : "";
    const handleDelete = async ()=>{
         try {
             await axiosInstance.delete(`/post/${id}`);
-                toast.success("Post deleted successfully");
+            toast.success("Post deleted successfully");
             allPost(); // Refresh the post list after deletion
+            navigate("/");
         } catch (error) {
             console.log(error);
             toast.error("Post deleted failed!");
