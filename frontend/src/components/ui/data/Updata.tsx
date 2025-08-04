@@ -5,8 +5,10 @@ import { Textarea } from "../textarea"
 import { Button } from "../button"
 import { UploadCloud } from "lucide-react"
 import React, { useRef, useState } from "react"
+import { toast } from "sonner"
+import axiosInstance from "@/hooks/axiosInstance"
 
-const Updata = () => {
+const Updata = ({id} : {id: string | undefined}) => {
   const fileInputRef=useRef<HTMLInputElement | null>(null);
   const [image,setImage]=useState<File | null>(null);
     const [title,setTitle]=useState('');
@@ -24,20 +26,44 @@ const Updata = () => {
       }
     }
 
-    
+    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
+      e.preventDefault();
+      if(!image || !(image instanceof File)){
+        toast.error("Please upload an image");
+        return;
+      }
+      const formData=new FormData();
+      formData.append("title",title);
+      formData.append("description",description);
+      formData.append('image',image);
+      formData.append("category",category);
+      formData.append("id", id!); // Ensure id is not undefined
+      try {
+         await axiosInstance.put(`/post/update/${id}`,formData);
+        toast.success("Post updated successfully");
+        setTitle('');
+        setDescription('');
+        setImage(null);
+        setCategory('');
+        fileInputRef.current!.value = ''; // Reset the file input
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+      }
+    }
 
   return (
     <>
     <Dialog>
       <DialogTrigger asChild>
-        <button className="mr-0 inline-block text-xs underline-offset-4 hover:underline 
-         hover:text-sky-500 transition duration-300 cursor-pointer">Update</button>
+        <Button className="mr-0 inline-block text-xs underline-offset-4 hover:underline 
+         hover:text-sky-500 transition duration-300 cursor-pointer" variant={'outline'}>Update</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader className="flex items-center justify-center">
           <DialogTitle>Update post.</DialogTitle>
         </DialogHeader>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-6">
             {/* Image */}
             <div className="grid gap-2">

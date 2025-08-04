@@ -3,7 +3,6 @@ import { Card, CardHeader, CardTitle } from "../card";
 import { toast } from "sonner";
 import { UsePost } from "@/contexts/PostContext";
 import { useNavigate } from "react-router-dom";
-import Updata from "./Updata";
 
 const BlogCards = () => {
   const [isActive, setIsActive] = useState<string>("All");
@@ -77,12 +76,7 @@ const BlogCards = () => {
                 By <span className="font-medium">{item?.author}</span> &nbsp;|&nbsp;
                 {item?.createdAt.slice(0, 10)}
               </p>
-              <div className="flex items-center justify-between p-2">
                 <p className="text-xs text-gray-500 italic">Category: {item?.category}</p>
-                  <div className="">
-                    <Updata/>
-                  </div>
-              </div>
             </div>
           </Card>
         ))}

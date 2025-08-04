@@ -2,6 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/ui/data/Footer";
 import Navbar from "@/components/ui/data/Navbar";
+import Updata from "@/components/ui/data/Updata";
 import { Textarea } from "@/components/ui/textarea";
 import { UsePost } from "@/contexts/PostContext";
 import { Facebook, Instagram, Twitter } from "lucide-react";
@@ -44,8 +45,12 @@ const BlogInfo = () => {
                  alt={post.title}
                  className="w-full max-w-5xl h-[80vh] rounded-lg"
                   />
-                  <div className="w-full max-w-3xl pt-5">
+                  <div className="w-full max-w-3xl pt-5 text-center mx-auto">
                     <p className="text-xl">{post.description}</p>
+                  </div>
+                  <div className="flex items-center gap-4 pt-8 mx-auto">
+                    <Updata id={id}/>
+                    <Button variant={'outline'}>Delete</Button>
                   </div>
             </div>
     </div> 
