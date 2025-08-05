@@ -9,7 +9,6 @@ const commentRoutes=require('./routes/comment.route');
 const fileUpload=require('express-fileupload');
 
 const errorMiddleware=require("./middleware/error.middleware");
-
 const app=express();
  
 app.use(express.json());

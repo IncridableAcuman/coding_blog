@@ -7,7 +7,7 @@ module.exports=class CommentDTO{
     constructor(comment){
         this.id=comment.id;
         this.post=comment.post;
-        this.user=comment.user;
+        this.user=comment.user?.username || comment.user;
         this.content=comment.content;
         this.createdAt=comment.createdAt;
     }

@@ -9,15 +9,15 @@ class CommentService{
     // add comment
 
     async addComment(postId,userId,content){
-        const user = await User.findOne({id:userId});
+        const user = await User.findById(userId);
         if(!user){
             throw BaseError.NotFoundError("User not found");
         }
-        const post = await Post.findOne({id:postId});
+        const post = await Post.findById(postId);
         if(!post){
             throw BaseError.NotFoundError("Post not found");
         }
-        const comment = await Comment.create({post:postId,user:userId,content});
+        const comment = await Comment.create({post:post.id,user:user.id,content});
         if(!comment){
             throw BaseError.InternalServerError("Comment not created");
         }
@@ -26,8 +26,8 @@ class CommentService{
     // get comments
     async getComments(){
         const comments = await Comment.find().populate("user","username");
-        if(!comment){
-            throw BaseError.NotFoundError("Comment not found!");
+        if(!comments){
+            throw BaseError.NotFoundError("Comments not found");
         }
         return comments.map((comment)=>new CommentDTO(comment));
     }

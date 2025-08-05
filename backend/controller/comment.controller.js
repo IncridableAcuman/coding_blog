@@ -1,11 +1,15 @@
-const commentService=require('../service/comment.service');
-
+const commentService = require('../service/Comment.service');
 class CommentController{
 
     // add comment
     async addComment(req, res, next) {
         try {
-            const { postId, userId, content } = req.body;
+            const { postId, content } = req.body;
+            const userId = req.user.id; // Assuming user ID is stored in req.user by authMiddleware
+            if (!postId || !content) {
+                return res.status(400).json({ message: "Post ID and content are required."
+                });
+            }
             const comment = await commentService.addComment(postId, userId, content);
             res.status(201).json(comment);
         } catch (error) {
@@ -20,6 +24,7 @@ class CommentController{
             return res.status(200).json(comments);
         } catch (error) {
             next(error);
+            console.log(error);
         }
     }
     // remove comment
