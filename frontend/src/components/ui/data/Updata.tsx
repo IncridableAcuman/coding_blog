@@ -39,13 +39,15 @@ const Updata = ({id} : {id: string | undefined}) => {
       formData.append("category",category);
       formData.append("id", id!); // Ensure id is not undefined
       try {
-         await axiosInstance.put(`/post/update/${id}`,formData);
-        toast.success("Post updated successfully");
-        setTitle('');
-        setDescription('');
-        setImage(null);
-        setCategory('');
-        fileInputRef.current!.value = ''; // Reset the file input
+          const {data} = await axiosInstance.put(`/post/${id}`,formData);
+          if(data){
+            toast.success("Post updated successfully");
+            setTitle('');
+            setDescription('');
+            setImage(null);
+            setCategory('');
+            fileInputRef.current!.value = ''; // Reset the file input
+          }
       } catch (error) {
         console.log(error);
         toast.error("Something went wrong");

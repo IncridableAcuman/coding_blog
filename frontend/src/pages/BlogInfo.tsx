@@ -1,10 +1,9 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import Comment from "@/components/ui/data/Comment";
 import Footer from "@/components/ui/data/Footer";
 import Navbar from "@/components/ui/data/Navbar";
 import Updata from "@/components/ui/data/Updata";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
 import { UsePost } from "@/contexts/PostContext";
 import axiosInstance from "@/hooks/axiosInstance";
 import { Facebook, Instagram, Twitter } from "lucide-react";
@@ -93,26 +92,8 @@ const BlogInfo = () => {
             </div>
     </div> 
     {/* comments */}
-    <div className="flex flex-col items-center justify-center py-24 px-5 lg:px-0">
-        <div className="mt-4 bg-sky-50 p-4 rounded-lg w-full max-w-3xl">
-            <Accordion type="single" collapsible>
-                <AccordionItem value="item-1">
-                    <AccordionTrigger>Comments(2)</AccordionTrigger>
-                    <AccordionContent>
-                    Yes. It adheres to the WAI-ARIA design pattern.
-                    </AccordionContent>
-                </AccordionItem>
-        </Accordion>
-        </div>
-    </div>
-    {/* writing  comments */}
-    <div className="flex flex-col items-center justify-center py-24">
-        <p className="pb-4 text-xl font-semibold">Write a comment:{" "}{username}</p>
-     <div className="grid w-full max-w-lg gap-2">
-      <Textarea placeholder="Type your message here." />
-      <Button>Send message</Button>
-    </div>
-    </div> 
+    <Comment postId={post.id} />
+
     <div className="flex flex-col items-center justify-center pb-10">
         <h2 className="font-semibold py-3 w-full max-w-lg mx-auto ">Share this article on social media</h2>
         <div className="flex items-center gap-3 w-full max-w-lg mx-auto ">

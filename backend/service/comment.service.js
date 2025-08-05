@@ -15,13 +15,29 @@ class CommentService{
         }
         const post = await Post.findOne({id:postId});
         if(!post){
-            throw BaseError.NotFoundError("POst not found");
+            throw BaseError.NotFoundError("Post not found");
         }
         const comment = await Comment.create({post:postId,user:userId,content});
         if(!comment){
             throw BaseError.InternalServerError("Comment not created");
         }
         return new CommentDTO(comment);
+    }
+    // get comments
+    async getComments(){
+        const comments = await Comment.find().populate("user","username");
+        if(!comment){
+            throw BaseError.NotFoundError("Comment not found!");
+        }
+        return comments.map((comment)=>new CommentDTO(comment));
+    }
+    // delete comment
+    async deleteComment(id){
+        const comment = await Comment.findByIdAndDelete(id);
+        if(!comment){
+           throw BaseError.NotFoundError("Comment not found!"); 
+        }
+        return "Comment deleted successfully.";
     }
 
 }

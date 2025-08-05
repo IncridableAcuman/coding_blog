@@ -10,6 +10,26 @@ class CommentController{
             res.status(201).json(comment);
         } catch (error) {
             next(error);
+            console.log(error)
+        }
+    }
+    // get comments
+    async getComments(req,res,next){
+        try {
+            const comments = await commentService.getComments();
+            return res.status(200).json(comments);
+        } catch (error) {
+            next(error);
+        }
+    }
+    // remove comment
+    async deleteComment(req,res,next){
+        try {
+            const {id}=req.params;
+            const comment = await commentService.deleteComment(id);
+            return res.status(200).json({message:comment});
+        } catch (error) {
+            next(error);
         }
     }
 

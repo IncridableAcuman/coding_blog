@@ -5,9 +5,14 @@ Welcome to the **Coding Blog Website** – a full-stack blogging platform where 
 ---
 
 ## 🏗️ Project Architecture
+    1. Frontend
+    2. Backend
+    
 
 ### 📦 Backend Structure
-
+    - Authentication
+    - Blog Posts
+    - Comments
 
 ---
 
