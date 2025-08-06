@@ -34,6 +34,7 @@ class CommentController{
             const comment = await commentService.deleteComment(id);
             return res.status(200).json({message:comment});
         } catch (error) {
+            console.log(error);
             next(error);
         }
     }

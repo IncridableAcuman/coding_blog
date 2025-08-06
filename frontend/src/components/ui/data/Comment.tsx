@@ -3,39 +3,56 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 import axiosInstance from "@/hooks/axiosInstance";
 import { Textarea } from "../textarea";
 import { Button } from "../button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { UseComment } from "@/contexts/CommentContext";
 
 const Comment = ({postId}:{postId:string | undefined}) => {
     const [content,setContent]=useState<string>('');
        const user=localStorage.getItem("user");
-       const [comments,setComments]=useState([]);
+       const {commentData,getComments} = UseComment();
        const username:string= user ? JSON.parse(user).username : "";
        const id:string=user? JSON.parse(user).id:"";
+
 
     const addComment = async ()=>{
         try {
             const {data} = await axiosInstance.post("/comment/add",{postId,id,content});
            if(data){
-             setComments(data);
             toast.success("Comment added successfully");
+            getComments();
            }
         } catch (error) {
             console.log(error);
-            toast.error("Server Error");
+            toast.error("Internal Server Error");
         }
     }
+    useEffect(()=>{
+        const fetchComment = async ()=>{
+            await getComments();
+        }
+        fetchComment();
+    },[getComments]);
   return (
     <>
     <div className="flex flex-col items-center justify-center py-24 px-5 lg:px-0">
         <div className="mt-4 bg-sky-50 p-4 rounded-lg w-full max-w-3xl">
-            <Accordion type="single" collapsible>
-                <AccordionItem value="item-1">
-                    <AccordionTrigger>Comments(2)</AccordionTrigger>
-                    <AccordionContent>
-                    Yes. It adheres to the WAI-ARIA design pattern.
-                    </AccordionContent>
-                </AccordionItem>
-        </Accordion>
+            
+                    <Accordion type="single" collapsible>
+                            <AccordionItem value="item-1">
+                                <AccordionTrigger>Comments({commentData.length})</AccordionTrigger>
+                                {
+                                    commentData.map((comment,index)=>(
+                                        
+                                        <AccordionContent key={index}>
+                                            <div className="flex items-center justify-between bg-white p-2 rounded-md">
+                                                {comment?.content}
+                                                <p>{comment.user}</p>
+                                            </div>
+                                     </AccordionContent>
+                                    ))
+                                }
+                            </AccordionItem>
+                    </Accordion>
         </div>
     </div>
         {/* writing  comments */}

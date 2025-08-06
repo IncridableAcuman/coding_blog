@@ -1,13 +1,15 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { UseComment } from "@/contexts/CommentContext";
 import { UsePost } from "@/contexts/PostContext";
 import { List, ListChecksIcon, MessageCircle, NotepadText } from "lucide-react";
 import { useEffect } from "react";
 
 const Blogboard = () => {
   const {postData,allPost}=UsePost();
+  const {commentData} = UseComment();
   const boardData = [
     { title: "Blogs", icon: <List className="w-8 h-8 text-blue-500" />, quantity: postData.length },
-    { title: "Comments", icon: <MessageCircle className="w-8 h-8 text-blue-500" />, quantity: 5 },
+    { title: "Comments", icon: <MessageCircle className="w-8 h-8 text-blue-500" />, quantity: commentData.length },
     { title: "Drafts", icon: <NotepadText className="w-8 h-8 text-blue-500" />, quantity: 0 }
   ];
 
