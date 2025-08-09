@@ -26,7 +26,7 @@ class CommentService{
     // get comments
     async getComments(){
         const comments = await Comment.find().populate("user","username");
-        if(!comments){
+        if(!comments || comments.length === 0){
             throw BaseError.NotFoundError("Comments not found");
         }
         return comments.map((comment)=>new CommentDTO(comment));
