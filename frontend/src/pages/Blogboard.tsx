@@ -1,3 +1,4 @@
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { UseComment } from "@/contexts/CommentContext";
 import { UsePost } from "@/contexts/PostContext";
@@ -47,8 +48,8 @@ const Blogboard = () => {
           <ListChecksIcon className="w-6 h-6 text-blue-500" />
           <h3 className="font-semibold text-lg">Latest Blogs</h3>
         </div>
-        <div className="w-full max-w-4xl overflow-x-auto">
-
+        <ScrollArea className="h-[400px] w-full max-w-4xl">
+          <div className="">
                 <Table className="w-full p-4">
                     <TableHeader className="bg-gray-50">
                       <TableRow>
@@ -74,6 +75,7 @@ const Blogboard = () => {
                       </TableBody>
                 </Table>
         </div>
+        </ScrollArea>
       </div>
     </div>
   );
