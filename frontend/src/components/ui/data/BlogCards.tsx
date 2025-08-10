@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle } from "../card";
 import { toast } from "sonner";
 import { UsePost } from "@/contexts/PostContext";
 import { useNavigate } from "react-router-dom";
+import type IPost from "@/interfaces/post.interface";
 
-const BlogCards = () => {
+const BlogCards: React.FC<{ posts: IPost[] }> = ({ posts }) => {
   const [isActive, setIsActive] = useState<string>("All");
   const { postData, allPost } = UsePost();
-    const user=localStorage.getItem("user");
-  const navigate=useNavigate();
+  const user = localStorage.getItem("user");
+  const navigate = useNavigate();
 
   const handleCategory = (category: string) => {
     setIsActive(category);
   };
 
   useEffect(() => {
-    const handlePost = async () => {
+    if(!posts){
+      const handlePost = async () => {
       try {
         await allPost();
       } catch (error) {
@@ -24,13 +26,15 @@ const BlogCards = () => {
       }
     };
     handlePost();
-  }, [allPost]);
+    }
+  }, [allPost, posts]);
 
+  const sourceData = posts ?? postData;
 
   const filteredPost =
     isActive === "All"
-      ? postData
-      : postData.filter(
+      ? sourceData
+      : sourceData.filter(
           (post) =>
             post.category?.toLowerCase() === isActive.toLowerCase()
         );

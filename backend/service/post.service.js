@@ -69,14 +69,6 @@ class PostService{
         }
         return posts.map(post => new PostDTO(post));
     }
-    // get posts by tag
-    // async getPostsByTag(tag){
-    //     const posts=await Post.find({tags: tag}).populate("author");
-    //     if(posts.length === 0){
-    //         throw BaseError.NotFoundError("No posts found with this tag");
-    //     }
-    //     return posts.map(post => new PostDTO(post));
-    // }
     // get posts by author
     async getPostsByAuthor(authorId){
         const posts=await Post.find({author: authorId}).populate("author");
