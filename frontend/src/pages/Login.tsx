@@ -13,7 +13,7 @@ import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import ForgotPassword from "@/components/ui/data/ForgotPassword"
 import { UseAuth } from "@/contexts/AuthContext"
-import { toast } from "sonner"
+import { toast } from "react-toastify"
 import axiosInstance from "@/hooks/axiosInstance"
 import { useNavigate } from "react-router-dom"
 const Login = () => {

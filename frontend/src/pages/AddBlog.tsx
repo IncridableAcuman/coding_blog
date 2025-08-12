@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea"
 import axiosInstance from "@/hooks/axiosInstance"
 import { UploadCloud } from "lucide-react"
 import React, { useRef, useState } from "react"
-import { toast } from "sonner"
+import { toast } from "react-toastify"
 
 
 const AddBlog = () => {

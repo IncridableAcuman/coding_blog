@@ -5,7 +5,7 @@ import { Textarea } from "../textarea"
 import { Button } from "../button"
 import { UploadCloud } from "lucide-react"
 import React, { useRef, useState } from "react"
-import { toast } from "sonner"
+import { toast } from "react-toastify"
 import axiosInstance from "@/hooks/axiosInstance"
 
 const Updata = ({id} : {id: string | undefined}) => {

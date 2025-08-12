@@ -2,7 +2,7 @@ import axiosInstance from "@/hooks/axiosInstance";
 import type ICommentContext from "@/interfaces/comment.context.interface";
 import type IComment from "@/interfaces/comment.interface";
 import React, { createContext, useContext, useState } from "react"
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 
 
 const CommentContext=createContext<ICommentContext | undefined>(undefined);

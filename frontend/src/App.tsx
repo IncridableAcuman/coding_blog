@@ -7,13 +7,13 @@ import BlogList from './pages/BlogList'
 import Comments from './pages/Comments'
 import Layout from './layout/Layout'
 import Blogboard from './pages/Blogboard'
-import { Toaster } from 'sonner'
+import { ToastContainer } from 'react-toastify'
 import Landing from './pages/Landing'
 import BlogInfo from './pages/BlogInfo'
 const App = () => {
   return (
     <>
-    <Toaster/>
+    <ToastContainer/>
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/login' element={<Login />} />

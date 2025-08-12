@@ -1,7 +1,7 @@
 import axiosInstance from "@/hooks/axiosInstance";
 import { ArrowRight } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 
 export const BoardNavbar = () => {
     const navigate=useNavigate();

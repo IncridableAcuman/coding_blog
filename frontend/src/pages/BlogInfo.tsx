@@ -9,7 +9,7 @@ import axiosInstance from "@/hooks/axiosInstance";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import DOMPurify from 'dompurify';
 
 const BlogInfo = () => {

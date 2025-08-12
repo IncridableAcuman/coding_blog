@@ -1,4 +1,4 @@
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../accordion"
 import axiosInstance from "@/hooks/axiosInstance";
 import { Textarea } from "../textarea";

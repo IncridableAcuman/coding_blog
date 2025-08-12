@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label"
 import axiosInstance from "@/hooks/axiosInstance"
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { toast } from "sonner"
+import { toast } from "react-toastify"
 
 const ResetPassword = () => {
     const navigate=useNavigate();

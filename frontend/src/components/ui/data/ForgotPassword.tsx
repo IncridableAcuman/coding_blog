@@ -3,7 +3,7 @@ import { Button } from "../button"
 import { Input } from "../input"
 import { Label } from "@radix-ui/react-label"
 import React, { useState } from "react"
-import { toast } from "sonner"
+import { toast } from "react-toastify"
 import axiosInstance from "@/hooks/axiosInstance"
 
 const ForgotPassword = () => {

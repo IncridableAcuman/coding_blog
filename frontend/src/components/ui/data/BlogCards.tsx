@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle } from "../card";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import { UsePost } from "@/contexts/PostContext";
 import { useNavigate } from "react-router-dom";
 import type IPost from "@/interfaces/post.interface";
