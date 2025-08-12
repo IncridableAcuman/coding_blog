@@ -18,7 +18,7 @@ const Info = () => {
               <Button className="px-5">Search</Button>
             </div>
         </div>
-          <BlogCards />
+          <BlogCards posts={[]} />
       </div>
     </div>
     {/* nerver miss a blog */}
