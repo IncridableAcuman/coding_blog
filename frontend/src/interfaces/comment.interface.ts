@@ -1,6 +1,6 @@
 export default interface IComment{
     id:string;
-    product:string;
+    post:string;
     user:string;
     content:string;
     createdAt:string

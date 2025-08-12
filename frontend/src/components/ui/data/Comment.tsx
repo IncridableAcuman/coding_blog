@@ -13,7 +13,7 @@ const Comment = ({postId}:{postId:string | undefined}) => {
        const username:string= user ? JSON.parse(user).username : "";
        const id:string=user? JSON.parse(user).id:"";
 
-
+    
     const addComment = async ()=>{
         try {
             const {data} = await axiosInstance.post("/comment/add",{postId,id,content});
@@ -39,15 +39,20 @@ const Comment = ({postId}:{postId:string | undefined}) => {
             
                     <Accordion type="single" collapsible>
                             <AccordionItem value="item-1">
-                                <AccordionTrigger>Comments({commentData.length})</AccordionTrigger>
+                                <AccordionTrigger>Comments(..)</AccordionTrigger>
                                 {
                                     commentData.map((comment,index)=>(
                                         
                                         <AccordionContent key={index}>
-                                            <div className="flex items-center justify-between bg-white p-2 rounded-md">
+                                            {
+                                                postId === comment?.post && (
+                                                  <div className="flex items-center justify-between bg-white p-2 rounded-md">
                                                 {comment?.content}
                                                 <p>{comment.user}</p>
-                                            </div>
+                                            </div>  
+                                                )
+                                            }
+                                            
                                      </AccordionContent>
                                     ))
                                 }
