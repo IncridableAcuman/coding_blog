@@ -1,7 +1,6 @@
 const Comment=require("../model/comment.model");
 const CommentDTO=require("../data/commentDTO");
 const User=require("../model/user.model");
-const ToPosten=require("../model/post.model");
 const BaseError=require("../error/base.error");
 const Post = require("../model/post.model");
 
