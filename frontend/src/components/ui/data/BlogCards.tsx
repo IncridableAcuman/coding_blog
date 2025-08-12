@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import type IPost from "@/interfaces/post.interface";
 import DOMPurify from 'dompurify';
 
-const BlogCards: React.FC<{ posts: IPost[] }> = ({ posts }) => {
+const BlogCards: React.FC<{ posts?: IPost[] }> = ({ posts }) => {
   const [isActive, setIsActive] = useState<string>("All");
   const { postData, allPost } = UsePost();
   const user = localStorage.getItem("user");
