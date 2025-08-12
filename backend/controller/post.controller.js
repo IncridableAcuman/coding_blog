@@ -6,11 +6,10 @@ class PostController{
         try {
             const {id}=req.user;
             const {title,description,category}=req.body;
-            const {image}=req.files;
+            const image=req.files?.image;
             if (!image) {
                 return res.status(400).json({ message: "Image is required" });
-}
-            
+            }
             const post=await postService.createPost(title,description,id,image,category);
             return res.status(201).json(post);
         } catch (error) {
@@ -42,7 +41,10 @@ class PostController{
         try {
             const {id}=req.params;
             const {title,description,category}=req.body;
-            const {image}=req.files;
+            const image=req.files?.image;
+            if(!image){
+                return res.status(400).json({message:"Image is required"});
+            }
             const post=await postService.updatePost(id,title,description,image,category);
             return res.status(200).json(post);
         } catch (error) {

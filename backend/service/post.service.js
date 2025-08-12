@@ -15,8 +15,8 @@ class PostService{
         if(!user){
             throw BaseError.NotFoundError("User not found");
         }
-        const fileName = await fileService.save(image);
-        const post=await Post.create({title,description,author,image: fileName,category});
+        const imageData=image? await fileService.toDB(image):null;
+        const post=await Post.create({title,description,author,image: imageData,category});
         const populatePost=await post.populate("author");
         return new PostDTO(populatePost);
     }
@@ -42,8 +42,8 @@ class PostService{
         const updateData = { title, description, category };
 
         if (image) {
-        const fileName = await fileService.save(image);
-        updateData.image = fileName;
+        const imageData = await fileService.toDB(image);
+        updateData.image = imageData;
     }
 
     const post = await Post.findByIdAndUpdate(id, updateData, { new: true }).populate("author");

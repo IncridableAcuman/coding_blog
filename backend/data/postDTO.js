@@ -11,8 +11,13 @@ module.exports=class PostDTO{
         this.title=model.title;
         this.description=model.description;
         this.author=model?.author?.username || model?.author;
-        this.image=model.image;
         this.category=model.category;
         this.createdAt=model.createdAt;
+        if(model.image && model.image.data){
+            const base64=model.image.data.toString("base64");
+            this.image=`data:${model.image.contentType};base64,${base64}`;
+        } else{
+            this.image=null;
+        }
     }
 }

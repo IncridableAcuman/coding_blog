@@ -20,7 +20,8 @@ const postSchema=new Schema({
         ref:"User"
     },
     image:{
-        type:String,
+        data:Buffer,
+        contentType:String
     },
     category:{
         type:String,

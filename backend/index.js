@@ -14,8 +14,11 @@ const app=express();
 app.use(express.json());
 app.use(cors({credentials:true,origin:process.env.CLIENT}));
 app.use(cookieParser());
-app.use(express.static("static")); // Serve static files from the "static" directory
-app.use(fileUpload({}));
+app.use(fileUpload({
+    limits:{fileSize:5*1024*1024},
+    abortOnLimit:true,
+    createParentPath:true
+}));
 app.use("/api/auth",authRoutes);
 app.use("/api/post",postRoutes);
 app.use("/api/comment",commentRoutes);
