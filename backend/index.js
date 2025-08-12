@@ -12,7 +12,7 @@ const errorMiddleware=require("./middleware/error.middleware");
 const app=express();
  
 app.use(express.json());
-app.use(cors({credentials:true,origin:"http://localhost:5173"}));
+app.use(cors({credentials:true,origin:"https://izzatbekblogs.onrender.com"}));
 app.use(cookieParser());
 app.use(fileUpload({
     limits:{fileSize:5*1024*1024},
