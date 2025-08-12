@@ -10,6 +10,7 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
+import DOMPurify from 'dompurify';
 
 const BlogInfo = () => {
     const { id } = useParams<{ id: string }>();
@@ -48,6 +49,10 @@ const BlogInfo = () => {
         return <div className="text-center text-red-500">Post not found</div>;
     }
 
+            const truncateHtml = (html: string, maxLength: number) => {
+          const text = html.replace(/<[^>]+>/g, ""); // HTML teglarni olib tashlash
+          return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+        };
 
   return (
     <>
@@ -60,12 +65,17 @@ const BlogInfo = () => {
                 <p className="text-xl font-semibold">{post.title}</p>
                 <h2 className="mb-10">Author:{" "}{post.author.charAt(0).toUpperCase()+post.author.slice(1,post.author.length)}</h2>
             </div>
-                <img src={`http://localhost:8080/${post.image}`}
+                <img src={post.image}
                  alt={post.title}
                  className="w-full max-w-5xl h-[80vh] rounded-lg"
                   />
                   <div className="w-full max-w-3xl pt-5 text-center mx-auto">
-                    <p className="text-xl">{post.description}</p>
+                   <div
+                    className="text-xl text-gray-600"
+                    dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(truncateHtml(post.description, post.description.length))
+                    }}
+                    />
                   </div>
                   <div className="flex items-center gap-4 pt-8 mx-auto">
                     {post?.author===username && (

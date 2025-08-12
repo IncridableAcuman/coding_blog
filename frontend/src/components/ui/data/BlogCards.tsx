@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { UsePost } from "@/contexts/PostContext";
 import { useNavigate } from "react-router-dom";
 import type IPost from "@/interfaces/post.interface";
+import DOMPurify from 'dompurify';
 
 const BlogCards: React.FC<{ posts: IPost[] }> = ({ posts }) => {
   const [isActive, setIsActive] = useState<string>("All");
@@ -39,6 +40,11 @@ const BlogCards: React.FC<{ posts: IPost[] }> = ({ posts }) => {
             post.category?.toLowerCase() === isActive.toLowerCase()
         );
 
+        const truncateHtml = (html: string, maxLength: number) => {
+          const text = html.replace(/<[^>]+>/g, ""); // HTML teglarni olib tashlash
+          return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+        };
+
   return (
     <div className="">
       {/* ✅ Kategoriya filter tugmalari faqat bir marta ko‘rsatiladi */}
@@ -66,14 +72,14 @@ const BlogCards: React.FC<{ posts: IPost[] }> = ({ posts }) => {
             <CardHeader className="p-0">
               {user ?(
               <img
-                src={`http://localhost:8080/${item?.image}`}
+                src={item.image}
                 alt={item?.title}
                 className="w-full h-48 object-cover rounded-t-2xl cursor-pointer"
                 onClick={()=>navigate(`/blog/${item?.id}`)}
               />
               ): (
                 <img
-                src={`http://localhost:8080/${item?.image}`}
+                src={item.image}
                 alt={item?.title}
                 className="w-full h-48 object-cover rounded-t-2xl cursor-pointer"
               />
@@ -83,7 +89,12 @@ const BlogCards: React.FC<{ posts: IPost[] }> = ({ posts }) => {
               <CardTitle className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition">
                 {item?.title}
               </CardTitle>
-              <p className="text-sm text-gray-600">{item?.description.slice(0, 100)}...</p>
+              <div
+              className="text-sm text-gray-600"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(truncateHtml(item.description, 100))
+              }}
+              />
               <p className="text-xs text-gray-500">
                 By <span className="font-medium">{item?.author}</span> &nbsp;|&nbsp;
                 {item?.createdAt.slice(0, 10)}
