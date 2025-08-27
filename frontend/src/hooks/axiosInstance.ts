@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosInstance=axios.create({
     withCredentials:true,
-    baseURL:"https://izzatbek-blog.onrender.com/api"
+    baseURL:"https://izzatbek-easy-coding-blog.onrender.com/api"
 });
 
 axiosInstance.interceptors.request.use(
