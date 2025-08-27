@@ -79,7 +79,7 @@ class AuthService{
         }
         const userDTO=new DTO(user);
         const tokens=tokenService.generateTokens({...userDTO});
-        mailService.sendMail(userDTO.email,process.env.CLIENT+"/reset-password?token="+tokens.accessToken);
+        mailService.sendMail(userDTO.email,"https://izzatbek-easy-blog3.onrender.com/reset-password?token="+tokens.accessToken);
         return {message:"Reset password link sent to email"};
     }
     // reset password
